@@ -51,12 +51,12 @@
                     <a href="#faq" class="nav-link relative px-4 py-2 text-gray-400 hover:text-white text-sm font-medium rounded-lg hover:bg-white/5 transition-all">FAQ</a>
                 </div>
 
-                <div class="hidden md:flex items-center">
-                    <a href="#contact" class="magnetic-btn px-7 py-3 bg-gradient-to-r from-accent-blue to-accent-purple text-white text-sm font-bold rounded-full hover:shadow-xl hover:shadow-accent-blue/30 transition-all duration-400 flex items-center relative overflow-hidden">
-                        <span class="relative z-10">Start Project</span>
-                        <svg class="relative z-10 w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="hidden md:flex items-center justify-center">
+                    <a href="#contact" class="nav-cta-btn">
+                        <span>Start Project</span>
+                        <!-- <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
+                        </svg> -->
                     </a>
                 </div>
 
@@ -120,9 +120,9 @@
             </p>
 
             <div class="reveal flex flex-col sm:flex-row items-center justify-center gap-5 mb-16">
-                <a href="#contact" class="magnetic-btn group px-10 py-5 bg-gradient-to-r from-accent-blue to-accent-purple text-white font-bold text-lg rounded-full hover:shadow-2xl hover:shadow-accent-blue/40 transition-all duration-500 flex items-center relative overflow-hidden">
-                    <span class="relative z-10">Start Project</span>
-                    <svg class="relative z-10 w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="#contact" class="magnetic-btn">
+                    <span>Start Project</span>
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                     </svg>
                 </a>
@@ -252,104 +252,99 @@
     </div>
 
     <!-- Services Section -->
-    <section class="relative py-28 overflow-hidden" id="services">
+    <section class="relative overflow-hidden" id="services">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/50 to-transparent"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-blue/15 to-accent-purple/15 border border-accent-blue/20 text-accent-blue text-sm font-semibold mb-6">Our Services</span>
+                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-blue/15 to-accent-purple/15 border border-accent-blue/20 text-accent-blue text-sm font-semibold mb-8">Our Services</span>
                 <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
                     Full-Stack <span class="text-gradient">Solutions</span>
                 </h2>
                 <p class="reveal text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
                     From concept to launch, we deliver exceptional web experiences that drive results
                 </p>
-                <div class="section-divider reveal mt-8">
-                    <span class="section-divider-line"></span>
-                    <span class="section-divider-dot"></span>
-                    <span class="section-divider-line" style="background: linear-gradient(to left, transparent, rgba(255,255,255,0.2));"></span>
-                </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center mb-6 shadow-lg shadow-accent-blue/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue/20 to-accent-purple/20 flex items-center justify-center mb-5 shadow-lg shadow-accent-blue/10">
                         <svg class="w-8 h-8 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-accent-blue transition-colors duration-300">Laravel Development</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-accent-blue transition-colors duration-300 leading-snug">Laravel Development</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Custom Laravel applications with robust architecture, clean code, and scalable solutions.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-purple/20 to-pink-500/20 flex items-center justify-center mb-6 shadow-lg shadow-accent-purple/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-purple/20 to-pink-500/20 flex items-center justify-center mb-5 shadow-lg shadow-accent-purple/10">
                         <svg class="w-8 h-8 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-accent-purple transition-colors duration-300">E-Commerce Websites</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-accent-purple transition-colors duration-300 leading-snug">E-Commerce Websites</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Powerful online stores with seamless payment integration and inventory management.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center mb-6 shadow-lg shadow-green-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-teal-500/20 flex items-center justify-center mb-5 shadow-lg shadow-green-500/10">
                         <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-green-400 transition-colors duration-300">Education Portals</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-green-400 transition-colors duration-300 leading-snug">Education Portals</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Interactive learning platforms with course management, assessments, and progress tracking.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 to-yellow-500/20 flex items-center justify-center mb-6 shadow-lg shadow-orange-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 to-yellow-500/20 flex items-center justify-center mb-5 shadow-lg shadow-orange-500/10">
                         <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-orange-400 transition-colors duration-300">Custom Admin Panels</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-orange-400 transition-colors duration-300 leading-snug">Custom Admin Panels</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Intuitive dashboards with data visualization, user management, and analytics tools.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center mb-5 shadow-lg shadow-cyan-500/10">
                         <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-cyan-400 transition-colors duration-300">Razorpay Integration</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-cyan-400 transition-colors duration-300 leading-snug">Razorpay Integration</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Secure payment gateway integration with subscription billing and invoice management.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center mb-6 shadow-lg shadow-violet-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center mb-5 shadow-lg shadow-violet-500/10">
                         <svg class="w-8 h-8 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-violet-400 transition-colors duration-300">SEO Optimization</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-violet-400 transition-colors duration-300 leading-snug">SEO Optimization</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Search engine optimization to boost rankings and drive organic traffic to your site.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center mb-6 shadow-lg shadow-rose-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500/20 to-pink-500/20 flex items-center justify-center mb-5 shadow-lg shadow-rose-500/10">
                         <svg class="w-8 h-8 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-rose-400 transition-colors duration-300">API Integrations</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-rose-400 transition-colors duration-300 leading-snug">API Integrations</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Third-party API connections and webhook implementations for seamless functionality.</p>
                 </div>
 
-                <div class="service-card rounded-2xl p-7 group">
-                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center mb-6 shadow-lg shadow-amber-500/10">
+                <div class="service-card rounded-2xl p-8 group">
+                    <div class="service-icon w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center mb-5 shadow-lg shadow-amber-500/10">
                         <svg class="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         </svg>
                     </div>
-                    <h3 class="font-display font-semibold text-xl mb-3 group-hover:text-amber-400 transition-colors duration-300">Website Maintenance</h3>
+                    <h3 class="font-display font-semibold text-xl mb-3.5 group-hover:text-amber-400 transition-colors duration-300 leading-snug">Website Maintenance</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Ongoing support, updates, security monitoring, and performance optimization.</p>
                 </div>
             </div>
@@ -357,7 +352,7 @@
     </section>
 
     <!-- Featured Work Section -->
-    <section class="relative py-28 overflow-hidden" id="work">
+    <section class="relative overflow-hidden" id="work">
         <div class="absolute inset-0">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-accent-blue/5 rounded-full blur-[120px]"></div>
             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-purple/5 rounded-full blur-[120px]"></div>
@@ -365,18 +360,13 @@
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-purple/15 to-pink-500/15 border border-accent-purple/20 text-accent-purple text-sm font-semibold mb-6">Featured Work</span>
+                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-purple/15 to-pink-500/15 border border-accent-purple/20 text-accent-purple text-sm font-semibold mb-8">Featured Work</span>
                 <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
                     Case <span class="text-gradient">Studies</span>
                 </h2>
                 <p class="reveal text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
                     Real projects delivering real results for real businesses
                 </p>
-                <div class="section-divider reveal mt-8">
-                    <span class="section-divider-line"></span>
-                    <span class="section-divider-dot"></span>
-                    <span class="section-divider-line" style="background: linear-gradient(to left, transparent, rgba(255,255,255,0.2));"></span>
-                </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 stagger-children">
@@ -650,18 +640,20 @@
     </section>
 
     <!-- Process Section -->
-    <section class="relative py-24 overflow-hidden" id="process">
+    <section class="process-section relative overflow-hidden" id="process">
         <div class="absolute inset-0">
             <div class="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+            <div class="process-glow-1"></div>
+            <div class="process-glow-2"></div>
         </div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-2 rounded-full bg-accent-blue/10 text-accent-blue text-sm font-medium mb-6">Our Process</span>
-                <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
+            <div class="text-center mb-20">
+                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-cyan/15 to-blue-500/15 border border-accent-cyan/20 text-accent-cyan text-sm font-semibold mb-8">Our Process</span>
+                <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 tracking-tight">
                     How We <span class="text-gradient">Work</span>
                 </h2>
-                <p class="reveal text-gray-400 text-lg max-w-2xl mx-auto">
+                <p class="reveal text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
                     A proven methodology that delivers exceptional results every time
                 </p>
             </div>
@@ -669,94 +661,124 @@
             <div class="relative">
                 <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2"></div>
 
-                <div class="space-y-16 md:space-y-24">
+                <div class="process-timeline space-y-16 md:space-y-28">
                     <div class="reveal timeline-item relative flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-16 md:text-right mb-8 md:mb-0">
-                            <div class="glass-card rounded-2xl p-6 md:ml-auto md:max-w-sm">
-                                <div class="text-4xl font-display font-bold text-accent-blue mb-2">01</div>
-                                <h3 class="font-display text-xl font-bold mb-2">Discover</h3>
-                                <p class="text-gray-400 text-sm">We dive deep into understanding your business, goals, and target audience through collaborative workshops.</p>
+                        <div class="md:w-1/2 md:pr-20 md:text-right mb-8 md:mb-0">
+                            <div class="process-card rounded-2xl p-8 md:ml-auto md:max-w-md text-right">
+                                <div class="process-step-number text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-cyan-400">01</div>
+                                <h3 class="font-display text-2xl font-bold mb-3">Discover</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">We dive deep into understanding your business, goals, and target audience through collaborative workshops.</p>
+                                <div class="process-time-badge mt-4 inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Week 1
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:flex w-20 h-20 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple items-center justify-center z-10">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="hidden md:flex w-24 h-24 rounded-full bg-gradient-to-br from-accent-blue to-accent-cyan items-center justify-center z-10 shadow-lg shadow-accent-blue/30">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                         </div>
-                        <div class="md:w-1/2 md:pl-16">
-                            <div class="text-gray-500 text-sm">Week 1</div>
+                        <div class="md:w-1/2 md:pl-20">
+                            <div class="text-gray-500 text-sm font-medium"></div>
                         </div>
                     </div>
 
                     <div class="reveal timeline-item relative flex flex-col md:flex-row-reverse items-center">
-                        <div class="md:w-1/2 md:pl-16 mb-8 md:mb-0">
-                            <div class="glass-card rounded-2xl p-6 md:max-w-sm">
-                                <div class="text-4xl font-display font-bold text-accent-purple mb-2">02</div>
-                                <h3 class="font-display text-xl font-bold mb-2">Design</h3>
-                                <p class="text-gray-400 text-sm">Our designers craft stunning mockups and prototypes that bring your vision to life with pixel-perfect precision.</p>
+                        <div class="md:w-1/2 md:pl-20 mb-8 md:mb-0">
+                            <div class="process-card rounded-2xl p-8 md:max-w-md">
+                                <div class="process-step-number text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-accent-purple to-pink-500">02</div>
+                                <h3 class="font-display text-2xl font-bold mb-3">Design</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Our designers craft stunning mockups and prototypes that bring your vision to life with pixel-perfect precision.</p>
+                                <div class="process-time-badge mt-4 inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Week 2-3
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:flex w-20 h-20 rounded-full bg-gradient-to-br from-accent-purple to-pink-500 items-center justify-center z-10">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="hidden md:flex w-24 h-24 rounded-full bg-gradient-to-br from-accent-purple to-pink-500 items-center justify-center z-10 shadow-lg shadow-accent-purple/30">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
                             </svg>
                         </div>
-                        <div class="md:w-1/2 md:pr-16 md:text-right">
-                            <div class="text-gray-500 text-sm">Week 2-3</div>
+                        <div class="md:w-1/2 md:pr-20 md:text-right">
+                            <div class="text-gray-500 text-sm font-medium"></div>
                         </div>
                     </div>
 
                     <div class="reveal timeline-item relative flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-16 md:text-right mb-8 md:mb-0">
-                            <div class="glass-card rounded-2xl p-6 md:ml-auto md:max-w-sm">
-                                <div class="text-4xl font-display font-bold text-green-400 mb-2">03</div>
-                                <h3 class="font-display text-xl font-bold mb-2">Develop</h3>
-                                <p class="text-gray-400 text-sm">Our engineers build robust, scalable solutions using cutting-edge technologies and best practices.</p>
+                        <div class="md:w-1/2 md:pr-20 md:text-right mb-8 md:mb-0">
+                            <div class="process-card rounded-2xl p-8 md:ml-auto md:max-w-md text-right">
+                                <div class="process-step-number text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-500">03</div>
+                                <h3 class="font-display text-2xl font-bold mb-3">Develop</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Our engineers build robust, scalable solutions using cutting-edge technologies and best practices.</p>
+                                <div class="process-time-badge mt-4 inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Week 4-8
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:flex w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-teal-500 items-center justify-center z-10">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="hidden md:flex w-24 h-24 rounded-full bg-gradient-to-br from-green-400 to-teal-500 items-center justify-center z-10 shadow-lg shadow-green-500/30">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
                             </svg>
                         </div>
-                        <div class="md:w-1/2 md:pl-16">
-                            <div class="text-gray-500 text-sm">Week 4-8</div>
+                        <div class="md:w-1/2 md:pl-20">
+                            <div class="text-gray-500 text-sm font-medium"></div>
                         </div>
                     </div>
 
                     <div class="reveal timeline-item relative flex flex-col md:flex-row-reverse items-center">
-                        <div class="md:w-1/2 md:pl-16 mb-8 md:mb-0">
-                            <div class="glass-card rounded-2xl p-6 md:max-w-sm">
-                                <div class="text-4xl font-display font-bold text-orange-400 mb-2">04</div>
-                                <h3 class="font-display text-xl font-bold mb-2">Launch</h3>
-                                <p class="text-gray-400 text-sm">We meticulously test, optimize, and deploy your project with zero downtime and full data migration support.</p>
+                        <div class="md:w-1/2 md:pl-20 mb-8 md:mb-0">
+                            <div class="process-card rounded-2xl p-8 md:max-w-md">
+                                <div class="process-step-number text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">04</div>
+                                <h3 class="font-display text-2xl font-bold mb-3">Launch</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">We meticulously test, optimize, and deploy your project with zero downtime and full data migration support.</p>
+                                <div class="process-time-badge mt-4 inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Week 9-10
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:flex w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-yellow-500 items-center justify-center z-10">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="hidden md:flex w-24 h-24 rounded-full bg-gradient-to-br from-orange-400 to-yellow-500 items-center justify-center z-10 shadow-lg shadow-orange-500/30">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                             </svg>
                         </div>
-                        <div class="md:w-1/2 md:pr-16 md:text-right">
-                            <div class="text-gray-500 text-sm">Week 9-10</div>
+                        <div class="md:w-1/2 md:pr-20 md:text-right">
+                            <div class="text-gray-500 text-sm font-medium"></div>
                         </div>
                     </div>
 
                     <div class="reveal timeline-item relative flex flex-col md:flex-row items-center">
-                        <div class="md:w-1/2 md:pr-16 md:text-right mb-8 md:mb-0">
-                            <div class="glass-card rounded-2xl p-6 md:ml-auto md:max-w-sm">
-                                <div class="text-4xl font-display font-bold text-cyan-400 mb-2">05</div>
-                                <h3 class="font-display text-xl font-bold mb-2">Support</h3>
-                                <p class="text-gray-400 text-sm">Ongoing maintenance, updates, monitoring, and optimization to ensure continued success.</p>
+                        <div class="md:w-1/2 md:pr-20 md:text-right mb-8 md:mb-0">
+                            <div class="process-card rounded-2xl p-8 md:ml-auto md:max-w-md text-right">
+                                <div class="process-step-number text-5xl font-display font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">05</div>
+                                <h3 class="font-display text-2xl font-bold mb-3">Support</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">Ongoing maintenance, updates, monitoring, and optimization to ensure continued success.</p>
+                                <div class="process-time-badge mt-4 inline-flex items-center gap-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    Ongoing
+                                </div>
                             </div>
                         </div>
-                        <div class="hidden md:flex w-20 h-20 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 items-center justify-center z-10">
-                            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="hidden md:flex w-24 h-24 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 items-center justify-center z-10 shadow-lg shadow-cyan-500/30">
+                            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
                             </svg>
                         </div>
-                        <div class="md:w-1/2 md:pl-16">
-                            <div class="text-gray-500 text-sm">Ongoing</div>
+                        <div class="md:w-1/2 md:pl-20">
+                            <div class="text-gray-500 text-sm font-medium"></div>
                         </div>
                     </div>
                 </div>
@@ -765,12 +787,12 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="relative py-24 overflow-hidden" id="testimonials">
+    <section class="relative overflow-hidden" id="testimonials">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface to-transparent"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-2 rounded-full bg-accent-purple/10 text-accent-purple text-sm font-medium mb-6">Testimonials</span>
+                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-purple/15 to-pink-500/15 border border-accent-purple/20 text-accent-purple text-sm font-semibold mb-8">Testimonials</span>
                 <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
                     Client <span class="text-gradient">Reviews</span>
                 </h2>
@@ -844,10 +866,10 @@
     </section>
 
     <!-- Tech Stack Section -->
-    <section class="relative py-24 overflow-hidden">
+    <section class="relative overflow-hidden">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="reveal inline-block px-4 py-2 rounded-full bg-green-500/10 text-green-400 text-sm font-medium mb-6">Tech Stack</span>
+                <span class="section-badge reveal inline-block px-5 py-2.5 rounded-full bg-gradient-to-r from-green-500/15 to-teal-500/15 border border-green-500/20 text-green-400 text-sm font-semibold mb-8">Tech Stack</span>
                 <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
                     Tools We <span class="text-gradient">Use</span>
                 </h2>
@@ -942,17 +964,15 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="relative py-24 overflow-hidden faq-section" id="faq">
-        <!-- Background Elements -->
+    <section class="faq-section relative overflow-hidden" id="faq">
         <div class="absolute inset-0">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/5 to-transparent"></div>
-            <div class="faq-grid-pattern absolute inset-0 opacity-20"></div>
+            <div class="faq-grid-pattern absolute inset-0"></div>
             <div class="absolute top-1/4 -left-32 w-64 h-64 bg-accent-blue/10 rounded-full blur-[100px]"></div>
             <div class="absolute bottom-1/4 -right-32 w-64 h-64 bg-accent-purple/10 rounded-full blur-[100px]"></div>
         </div>
 
         <div class="relative max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
             <div class="text-center mb-16">
                 <div class="faq-badge-wrapper inline-block relative mb-8">
                     <span class="faq-badge inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-accent-blue/15 to-accent-purple/15 border border-accent-blue/25 text-accent-blue text-sm font-semibold">
@@ -969,131 +989,90 @@
                 <p class="reveal text-gray-400 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed">
                     Everything you need to know before starting your project with us.
                 </p>
-                <div class="reveal mt-8 flex items-center justify-center gap-3">
-                    <span class="w-12 h-px bg-gradient-to-r from-transparent to-accent-blue/50"></span>
-                    <span class="w-2 h-2 rounded-full bg-accent-blue/50"></span>
-                    <span class="w-12 h-px bg-gradient-to-l from-transparent to-accent-blue/50"></span>
-                </div>
             </div>
 
-            <!-- FAQ Container -->
             <div class="faq-container stagger-children" id="faqContainer">
-                <!-- FAQ Item 1 -->
-                <div class="faq-item group relative mb-4">
+                <div class="faq-item group">
                     <div class="faq-glow absolute -inset-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue/20 to-accent-purple/0 rounded-2xl opacity-0 blur-sm transition-opacity duration-500"></div>
-                    <button class="faq-question relative w-full flex items-center justify-between p-6 sm:p-7 text-left rounded-2xl bg-surface/50 backdrop-blur-sm border border-white/[0.06] hover:border-accent-blue/40 hover:bg-surface/70 transition-all duration-400 ease-out" onclick="toggleFaq(this)">
-                        <span class="faq-number absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-[.active]:opacity-100 group-[.active]:translate-x-0">
-                            <span class="text-[10px] font-bold text-white">1</span>
-                        </span>
-                        <span class="font-display font-semibold text-lg sm:text-xl text-white group-hover:text-accent-blue transition-colors duration-300 pr-4">What is your typical project timeline?</span>
-                        <span class="faq-icon flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:from-accent-blue/30 group-hover:to-accent-purple/30 group-hover:border-accent-blue/30">
-                            <svg class="faq-icon-svg w-5 h-5 text-accent-blue transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What is your typical project timeline?</span>
+                        <span class="faq-icon">
+                            <svg class="faq-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12m6-6H6"/>
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-answer relative overflow-hidden max-h-0 transition-all duration-500 ease-out">
-                        <div class="px-6 sm:px-7 pt-5 pb-7">
-                            <div class="h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent mb-5"></div>
-                            <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
-                                Project timelines vary based on complexity. A simple landing page takes 2-3 weeks, while complex web applications can take 8-12 weeks. We provide detailed timelines during our discovery phase and keep you updated throughout the project.
-                            </p>
+                    <div class="faq-answer">
+                        <div>
+                            <p>Project timelines vary based on complexity. A simple landing page takes 2-3 weeks, while complex web applications can take 8-12 weeks. We provide detailed timelines during our discovery phase and keep you updated throughout the project.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- FAQ Item 2 -->
-                <div class="faq-item group relative mb-4">
+                <div class="faq-item group">
                     <div class="faq-glow absolute -inset-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue/20 to-accent-purple/0 rounded-2xl opacity-0 blur-sm transition-opacity duration-500"></div>
-                    <button class="faq-question relative w-full flex items-center justify-between p-6 sm:p-7 text-left rounded-2xl bg-surface/50 backdrop-blur-sm border border-white/[0.06] hover:border-accent-blue/40 hover:bg-surface/70 transition-all duration-400 ease-out" onclick="toggleFaq(this)">
-                        <span class="faq-number absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-[.active]:opacity-100 group-[.active]:translate-x-0">
-                            <span class="text-[10px] font-bold text-white">2</span>
-                        </span>
-                        <span class="font-display font-semibold text-lg sm:text-xl text-white group-hover:text-accent-blue transition-colors duration-300 pr-4">What technologies do you specialize in?</span>
-                        <span class="faq-icon flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:from-accent-blue/30 group-hover:to-accent-purple/30 group-hover:border-accent-blue/30">
-                            <svg class="faq-icon-svg w-5 h-5 text-accent-blue transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>What technologies do you specialize in?</span>
+                        <span class="faq-icon">
+                            <svg class="faq-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12m6-6H6"/>
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-answer relative overflow-hidden max-h-0 transition-all duration-500 ease-out">
-                        <div class="px-6 sm:px-7 pt-5 pb-7">
-                            <div class="h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent mb-5"></div>
-                            <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
-                                We specialize in Laravel, PHP, JavaScript, and modern frameworks like Vue.js and React. For styling, we use Tailwind CSS and Bootstrap. We work with MySQL databases and deploy on Vercel, Cloudflare, and other leading platforms.
-                            </p>
+                    <div class="faq-answer">
+                        <div>
+                            <p>We specialize in Laravel, PHP, JavaScript, and modern frameworks like Vue.js and React. For styling, we use Tailwind CSS and Bootstrap. We work with MySQL databases and deploy on Vercel, Cloudflare, and other leading platforms.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- FAQ Item 3 -->
-                <div class="faq-item group relative mb-4">
+                <div class="faq-item group">
                     <div class="faq-glow absolute -inset-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue/20 to-accent-purple/0 rounded-2xl opacity-0 blur-sm transition-opacity duration-500"></div>
-                    <button class="faq-question relative w-full flex items-center justify-between p-6 sm:p-7 text-left rounded-2xl bg-surface/50 backdrop-blur-sm border border-white/[0.06] hover:border-accent-blue/40 hover:bg-surface/70 transition-all duration-400 ease-out" onclick="toggleFaq(this)">
-                        <span class="faq-number absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-[.active]:opacity-100 group-[.active]:translate-x-0">
-                            <span class="text-[10px] font-bold text-white">3</span>
-                        </span>
-                        <span class="font-display font-semibold text-lg sm:text-xl text-white group-hover:text-accent-blue transition-colors duration-300 pr-4">Do you provide post-launch support?</span>
-                        <span class="faq-icon flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:from-accent-blue/30 group-hover:to-accent-purple/30 group-hover:border-accent-blue/30">
-                            <svg class="faq-icon-svg w-5 h-5 text-accent-blue transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Do you provide post-launch support?</span>
+                        <span class="faq-icon">
+                            <svg class="faq-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12m6-6H6"/>
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-answer relative overflow-hidden max-h-0 transition-all duration-500 ease-out">
-                        <div class="px-6 sm:px-7 pt-5 pb-7">
-                            <div class="h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent mb-5"></div>
-                            <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
-                                Absolutely! We offer ongoing support packages that include security updates, performance monitoring, content updates, and technical support. We don't disappear after launch — we're partners in your digital success.
-                            </p>
+                    <div class="faq-answer">
+                        <div>
+                            <p>Absolutely! We offer ongoing support packages that include security updates, performance monitoring, content updates, and technical support. We don't disappear after launch — we're partners in your digital success.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- FAQ Item 4 -->
-                <div class="faq-item group relative mb-4">
+                <div class="faq-item group">
                     <div class="faq-glow absolute -inset-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue/20 to-accent-purple/0 rounded-2xl opacity-0 blur-sm transition-opacity duration-500"></div>
-                    <button class="faq-question relative w-full flex items-center justify-between p-6 sm:p-7 text-left rounded-2xl bg-surface/50 backdrop-blur-sm border border-white/[0.06] hover:border-accent-blue/40 hover:bg-surface/70 transition-all duration-400 ease-out" onclick="toggleFaq(this)">
-                        <span class="faq-number absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-[.active]:opacity-100 group-[.active]:translate-x-0">
-                            <span class="text-[10px] font-bold text-white">4</span>
-                        </span>
-                        <span class="font-display font-semibold text-lg sm:text-xl text-white group-hover:text-accent-blue transition-colors duration-300 pr-4">How do you handle payments?</span>
-                        <span class="faq-icon flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:from-accent-blue/30 group-hover:to-accent-purple/30 group-hover:border-accent-blue/30">
-                            <svg class="faq-icon-svg w-5 h-5 text-accent-blue transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do you handle payments?</span>
+                        <span class="faq-icon">
+                            <svg class="faq-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12m6-6H6"/>
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-answer relative overflow-hidden max-h-0 transition-all duration-500 ease-out">
-                        <div class="px-6 sm:px-7 pt-5 pb-7">
-                            <div class="h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent mb-5"></div>
-                            <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
-                                We typically split payments into phases: 50% upfront, 25% at design approval, and 25% upon project completion. For larger projects, we offer milestone-based payments. We accept bank transfers, UPI, and Razorpay for online payments.
-                            </p>
+                    <div class="faq-answer">
+                        <div>
+                            <p>We typically split payments into phases: 50% upfront, 25% at design approval, and 25% upon project completion. For larger projects, we offer milestone-based payments. We accept bank transfers, UPI, and Razorpay for online payments.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- FAQ Item 5 -->
-                <div class="faq-item group relative mb-4">
+                <div class="faq-item group">
                     <div class="faq-glow absolute -inset-1 bg-gradient-to-r from-accent-blue/0 via-accent-blue/20 to-accent-purple/0 rounded-2xl opacity-0 blur-sm transition-opacity duration-500"></div>
-                    <button class="faq-question relative w-full flex items-center justify-between p-6 sm:p-7 text-left rounded-2xl bg-surface/50 backdrop-blur-sm border border-white/[0.06] hover:border-accent-blue/40 hover:bg-surface/70 transition-all duration-400 ease-out" onclick="toggleFaq(this)">
-                        <span class="faq-number absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center opacity-0 -translate-x-2 transition-all duration-400 group-[.active]:opacity-100 group-[.active]:translate-x-0">
-                            <span class="text-[10px] font-bold text-white">5</span>
-                        </span>
-                        <span class="font-display font-semibold text-lg sm:text-xl text-white group-hover:text-accent-blue transition-colors duration-300 pr-4">Can you work with existing projects?</span>
-                        <span class="faq-icon flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-white/[0.06] to-white/[0.02] border border-white/[0.08] flex items-center justify-center transition-all duration-400 group-hover:scale-110 group-hover:from-accent-blue/30 group-hover:to-accent-purple/30 group-hover:border-accent-blue/30">
-                            <svg class="faq-icon-svg w-5 h-5 text-accent-blue transition-transform duration-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can you work with existing projects?</span>
+                        <span class="faq-icon">
+                            <svg class="faq-icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v12m6-6H6"/>
                             </svg>
                         </span>
                     </button>
-                    <div class="faq-answer relative overflow-hidden max-h-0 transition-all duration-500 ease-out">
-                        <div class="px-6 sm:px-7 pt-5 pb-7">
-                            <div class="h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent mb-5"></div>
-                            <p class="text-gray-400 leading-relaxed text-base sm:text-lg">
-                                Yes! We regularly take over existing projects, whether it's adding new features, fixing bugs, improving performance, or complete redesigns. We'll assess your current codebase and provide recommendations for improvement.
-                            </p>
+                    <div class="faq-answer">
+                        <div>
+                            <p>Yes! We regularly take over existing projects, whether it's adding new features, fixing bugs, improving performance, or complete redesigns. We'll assess your current codebase and provide recommendations for improvement.</p>
                         </div>
                     </div>
                 </div>

@@ -695,6 +695,12 @@ body {
     background: rgba(5, 5, 5, 0.7);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: visible !important;
+    min-height: 80px;
+}
+
+.nav-container > div {
+    min-height: 80px;
 }
 
 .nav-container.scrolled {
@@ -766,15 +772,43 @@ body {
 }
 
 /* ========================================
-   MAGNETIC BUTTON (Enhanced)
+   NAVBAR CTA BUTTON (Fixed)
    ======================================== */
-.magnetic-btn {
-    position: relative;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-    overflow: hidden;
+.nav-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 24px;
+    height: 44px;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px -2px rgba(59, 130, 246, 0.3);
 }
 
-.magnetic-btn::before {
+.nav-cta-btn svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    flex-basis: auto;
+}
+
+.nav-cta-btn:hover {
+    box-shadow: 0 4px 20px -4px rgba(59, 130, 246, 0.5);
+}
+
+.nav-cta-btn:hover svg {
+    transform: translateX(3px);
+}
+
+.nav-cta-btn::before {
     content: '';
     position: absolute;
     inset: -2px;
@@ -786,8 +820,70 @@ body {
     filter: blur(8px);
 }
 
-.magnetic-btn:hover::before {
+.nav-cta-btn:hover::before {
     opacity: 0.7;
+}
+
+/* ========================================
+   PREMIUM CTA BUTTON (Hero)
+   ======================================== */
+.magnetic-btn,
+a.magnetic-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 32px;
+    min-height: 56px;
+    white-space: nowrap;
+    text-decoration: none;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 4px 20px -5px rgba(59, 130, 246, 0.4);
+}
+
+.magnetic-btn .relative,
+a.magnetic-btn .relative {
+    z-index: 10;
+}
+
+.magnetic-btn svg,
+a.magnetic-btn svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.magnetic-btn:hover,
+a.magnetic-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px -5px rgba(59, 130, 246, 0.5);
+}
+
+.magnetic-btn:hover svg,
+a.magnetic-btn:hover svg {
+    transform: translateX(4px);
+}
+
+.magnetic-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    filter: blur(12px);
+}
+
+.magnetic-btn:hover::before {
+    opacity: 0.8;
     animation: btnGlow 2s ease-in-out infinite;
 }
 
@@ -803,15 +899,15 @@ body {
     left: 50%;
     width: 0;
     height: 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: width 0.6s ease, height 0.6s ease;
 }
 
 .magnetic-btn:active::after {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
 
 /* ========================================
@@ -974,7 +1070,7 @@ body {
 }
 
 /* ========================================
-   PREMIUM SERVICE CARD
+   PREMIUM SERVICE CARD (Issue #2 - Fixed)
    ======================================== */
 .service-card {
     position: relative;
@@ -982,6 +1078,9 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.06);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     overflow: hidden;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card::before {
@@ -1030,6 +1129,7 @@ body {
 .service-icon {
     position: relative;
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    margin-bottom: 20px;
 }
 
 .service-icon::after {
@@ -1529,7 +1629,7 @@ body {
 }
 
 /* ========================================
-   PREMIUM SECTION HEADER
+   PREMIUM SECTION HEADER (Issue #2 - Fixed)
    ======================================== */
 .section-header {
     text-align: center;
@@ -1542,7 +1642,7 @@ body {
     border-radius: 9999px;
     font-size: 0.875rem;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 32px;
     position: relative;
     overflow: hidden;
 }
@@ -1568,7 +1668,7 @@ body {
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.05;
-    margin-bottom: 1.5rem;
+    margin-bottom: 24px;
     letter-spacing: -0.03em;
 }
 
@@ -2648,6 +2748,290 @@ body {
     filter: blur(12px);
     opacity: 0.4;
     z-index: -1;
+}
+
+/* ========================================
+   SECTION SPACING (Issue #3 - Fixed)
+   ======================================== */
+#services,
+#work,
+#process,
+#testimonials,
+#faq {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+section[id="tech-stack"],
+section:has(.tech-logo) {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.cta-section {
+    padding-top: 140px;
+    padding-bottom: 140px;
+}
+
+/* ========================================
+   PROCESS TIMELINE ICONS (Issue #4 - Fixed)
+   ======================================== */
+.process-timeline .w-24 {
+    width: 96px !important;
+    height: 96px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.process-timeline .w-24::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: -1;
+    transition: all 0.4s ease;
+}
+
+.process-timeline .w-24:hover::before {
+    opacity: 0.7;
+    inset: -12px;
+}
+
+.process-timeline .w-24:hover {
+    transform: scale(1.1);
+}
+
+.process-timeline .w-24 svg {
+    width: 40px !important;
+    height: 40px !important;
+    transition: transform 0.3s ease;
+}
+
+.process-timeline .w-24:hover svg {
+    transform: scale(1.1);
+}
+
+/* ========================================
+   PREMIUM FAQ SECTION (Issue #5 - Redesigned)
+   ======================================== */
+.faq-section {
+    position: relative;
+    padding: 120px 0;
+}
+
+.faq-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.faq-grid-pattern {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.faq-badge-wrapper {
+    animation: badgeFloat 4s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.faq-badge {
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    position: relative;
+    margin-bottom: 16px;
+    border-radius: 20px;
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+.faq-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.1), transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.faq-item:hover::before {
+    opacity: 1;
+}
+
+.faq-item:hover {
+    border-color: rgba(59, 130, 246, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 30px -10px rgba(59, 130, 246, 0.2);
+}
+
+.faq-item.active {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(20, 20, 30, 0.8);
+    box-shadow: 0 0 50px -10px rgba(59, 130, 246, 0.3), inset 0 040px -20px rgba(59, 130, 246, 0.1);
+}
+
+.faq-item.active::before {
+    opacity: 1;
+}
+
+.faq-item.active .faq-glow {
+    opacity: 1;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    gap: 20px;
+}
+
+.faq-question span:first-child {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.faq-item:hover .faq-question span:first-child {
+    color: var(--accent-blue);
+}
+
+.faq-item.active .faq-question span:first-child {
+    color: var(--accent-blue);
+}
+
+.faq-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.faq-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-blue);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.faq-item:hover .faq-icon {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: scale(1.05);
+}
+
+.faq-item.active .faq-icon {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    border-color: transparent;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.5);
+}
+
+.faq-item.active .faq-icon svg {
+    color: white;
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 400px;
+}
+
+.faq-answer > div {
+    padding: 0 32px 28px;
+}
+
+.faq-answer p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.faq-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+}
+
+@media (max-width: 640px) {
+    .faq-question {
+        padding: 20px 24px;
+    }
+    .faq-answer > div {
+        padding: 0 24px 20px;
+    }
+    .faq-question span:first-child {
+        font-size: 1rem;
+    }
+    .faq-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: 12px;
+    }
+    .faq-icon svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 
 /* ========================================
