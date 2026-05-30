@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -n '465,475p' index.html)",
+      "Bash(sed -n '730,745p' index.html)",
+      "Bash(sed -n '812,825p' index.html)",
+      "Bash(sed -n '900,920p' index.html)",
+      "Bash(python3 -c ':*)",
+      "Bash(python -c ':*)",
+      "Bash(python -c \"import re; f=open\\('style.css'\\); c=f.read\\(\\); f.close\\(\\); print\\(f'Braces: {c.count\\(\\\\\"{\\\\\"\\)} open, {c.count\\(\\\\\"}\\\\\"\\)} close'\\)\")"
+    ]
+  }
+}
