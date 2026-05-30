@@ -5,7 +5,7 @@
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all modules with null checks
+    initAnimatedBackground();
     initLoader();
     initScrollProgress();
     initMouseFollower();
@@ -17,7 +17,47 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initParallax();
     updateActiveNav();
+    initScrollNav();
+    initServiceCardGlow();
 });
+
+/* ========================================
+   ANIMATED BACKGROUND MESH
+   ======================================== */
+function initAnimatedBackground() {
+    const body = document.body;
+    const canvas = document.createElement('div');
+    canvas.className = 'animated-bg-mesh';
+    canvas.innerHTML = `
+        <div class="gradient-orb gradient-orb-1"></div>
+        <div class="gradient-orb gradient-orb-2"></div>
+        <div class="gradient-orb gradient-orb-3"></div>
+    `;
+    body.appendChild(canvas);
+
+    // Add noise overlay
+    const noise = document.createElement('div');
+    noise.className = 'noise-overlay';
+    body.appendChild(noise);
+
+    // Parallax effect for orbs
+    let ticking = false;
+    document.addEventListener('mousemove', function(e) {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                const orbs = document.querySelectorAll('.gradient-orb');
+                orbs.forEach((orb, index) => {
+                    const speed = 0.02 + (index * 0.01);
+                    const x = (e.clientX - window.innerWidth / 2) * speed;
+                    const y = (e.clientY - window.innerHeight / 2) * speed;
+                    orb.style.transform = `translate(${x}px, ${y}px)`;
+                });
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
 
 /* ========================================
    LOADER
@@ -71,7 +111,7 @@ function initScrollProgress() {
 }
 
 /* ========================================
-   MOUSE FOLLOWER (Gradient Effect)
+   ENHANCED MOUSE FOLLOWER
    ======================================== */
 function initMouseFollower() {
     const mouseFollower = document.getElementById('mouseFollower');
@@ -79,10 +119,19 @@ function initMouseFollower() {
 
     // Only enable on desktop
     if (window.innerWidth > 768) {
+        let lastX = 0, lastY = 0;
+
         document.addEventListener('mousemove', function(e) {
             requestAnimationFrame(function() {
-                mouseFollower.style.left = e.clientX + 'px';
-                mouseFollower.style.top = e.clientY + 'px';
+                // Smooth interpolation for following effect
+                const x = lastX + (e.clientX - lastX) * 0.15;
+                const y = lastY + (e.clientY - lastY) * 0.15;
+
+                mouseFollower.style.left = x + 'px';
+                mouseFollower.style.top = y + 'px';
+
+                lastX = x;
+                lastY = y;
             });
         });
 
@@ -127,7 +176,7 @@ function initMobileMenu() {
    SCROLL REVEAL ANIMATIONS
    ======================================== */
 function initScrollReveal() {
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
     const staggerElements = document.querySelectorAll('.stagger-children');
 
     const observerOptions = {
@@ -180,16 +229,16 @@ function initCounters() {
 function animateCounter(element, target) {
     if (!element) return;
 
-    const duration = 2000; // 2 seconds
+    const duration = 2500; // 2.5 seconds for premium feel
     const startTime = performance.now();
 
     function updateCounter(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
-        // Easing function for smooth animation
-        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-        const current = Math.floor(easeOutQuart * target);
+        // Premium easing function - ease out expo
+        const easeOutExpo = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+        const current = Math.floor(easeOutExpo * target);
 
         element.textContent = current;
 
@@ -229,21 +278,47 @@ function toggleFaq(button) {
     const faqItem = button.parentElement;
     if (!faqItem) return;
 
+    const answer = faqItem.querySelector('.faq-answer');
+    const icon = faqItem.querySelector('.faq-icon-svg');
     const isActive = faqItem.classList.contains('active');
 
     // Close all other FAQ items
     document.querySelectorAll('.faq-item').forEach(function(item) {
-        item.classList.remove('active');
+        if (item !== faqItem) {
+            item.classList.remove('active');
+            const otherAnswer = item.querySelector('.faq-answer');
+            const otherIcon = item.querySelector('.faq-icon-svg');
+            if (otherAnswer) {
+                otherAnswer.style.maxHeight = '0';
+            }
+            if (otherIcon) {
+                otherIcon.style.transform = 'rotate(0deg)';
+            }
+        }
     });
 
     // Toggle current item
     if (!isActive) {
         faqItem.classList.add('active');
+        if (answer) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+        if (icon) {
+            icon.style.transform = 'rotate(45deg)';
+        }
+    } else {
+        faqItem.classList.remove('active');
+        if (answer) {
+            answer.style.maxHeight = '0';
+        }
+        if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+        }
     }
 }
 
 /* ========================================
-   MAGNETIC BUTTONS
+   ENHANCED MAGNETIC BUTTONS
    ======================================== */
 function initMagneticButtons() {
     const buttons = document.querySelectorAll('.magnetic-btn');
@@ -257,12 +332,16 @@ function initMagneticButtons() {
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
 
-                // Subtle magnetic effect
-                btn.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
+                // Premium magnetic effect with smooth interpolation
+                const targetX = x * 0.25;
+                const targetY = y * 0.25;
+
+                btn.style.transform = `translate(${targetX}px, ${targetY}px) scale(1.02)`;
             });
 
             btn.addEventListener('mouseleave', function() {
-                btn.style.transform = 'translate(0, 0)';
+                // Smooth return to original position
+                btn.style.transform = 'translate(0, 0) scale(1)';
             });
         });
     }
@@ -277,13 +356,13 @@ function initSmoothScroll() {
 
     anchors.forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-
             const targetId = this.getAttribute('href');
             if (!targetId || targetId === '#') return;
 
             const target = document.querySelector(targetId);
             if (target) {
+                e.preventDefault();
+
                 const headerOffset = 80;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -325,6 +404,22 @@ function initParallax() {
 }
 
 /* ========================================
+   NAVIGATION SCROLL STATE
+   ======================================== */
+function initScrollNav() {
+    const nav = document.querySelector('.nav-container');
+    if (!nav) return;
+
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+}
+
+/* ========================================
    NAVIGATION ACTIVE STATE
    ======================================== */
 function updateActiveNav() {
@@ -347,14 +442,30 @@ function updateActiveNav() {
         });
 
         navLinks.forEach(function(link) {
-            link.classList.remove('text-white');
-            link.classList.add('text-gray-400');
+            link.classList.remove('active');
 
             const href = link.getAttribute('href');
             if (href === '#' + current) {
-                link.classList.add('text-white');
-                link.classList.remove('text-gray-400');
+                link.classList.add('active');
             }
+        });
+    });
+}
+
+/* ========================================
+   SERVICE CARD GLOW EFFECT
+   ======================================== */
+function initServiceCardGlow() {
+    const cards = document.querySelectorAll('.service-card');
+
+    cards.forEach(function(card) {
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            card.style.setProperty('--mouse-x', x + '%');
+            card.style.setProperty('--mouse-y', y + '%');
         });
     });
 }
@@ -385,6 +496,6 @@ document.addEventListener('mousedown', function() {
 /* ========================================
    CONSOLE EASTER EGG
    ======================================== */
-console.log('%c Ritik Web Solutions', 'font-size: 24px; font-weight: bold; color: #3b82f6;');
-console.log('%cPremium Web Development Agency', 'font-size: 14px; color: #8b5cf6;');
+console.log('%c Ritik Web Solutions', 'font-size: 28px; font-weight: bold; color: #3b82f6; text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);');
+console.log('%cPremium Web Development Agency', 'font-size: 16px; color: #8b5cf6;');
 console.log('%cBuilt with passion and precision.', 'font-size: 12px; color: #6b7280;');
