@@ -155,20 +155,61 @@ function initMobileMenu() {
 
     if (!menuBtn || !mobileMenu) return;
 
+    function openMenu() {
+        menuBtn.classList.add('active');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        menuBtn.setAttribute('aria-label', 'Close menu');
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', 'Open menu');
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     menuBtn.addEventListener('click', function() {
-        menuBtn.classList.toggle('active');
-        mobileMenu.classList.toggle('active');
-        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        if (mobileMenu.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
 
     // Close menu when clicking a link
     const mobileLinks = document.querySelectorAll('.mobile-link');
     mobileLinks.forEach(function(link) {
         link.addEventListener('click', function() {
-            menuBtn.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
+            closeMenu();
         });
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+
+    // Close when clicking outside menu content
+    mobileMenu.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            closeMenu();
+        }
+    });
+
+    // Close on resize to desktop
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        }, 100);
     });
 }
 
@@ -255,64 +296,133 @@ function animateCounter(element, target) {
 /* ========================================
    FAQ ACCORDION
    ======================================== */
+let _faqInitialized = false;
+
 function initFaq() {
+    // Idempotent: prevent double-binding listeners on re-init
+    if (_faqInitialized) return;
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length === 0) return;
 
-    faqItems.forEach(function(item) {
+    faqItems.forEach(function(item, index) {
         const question = item.querySelector('.faq-question');
         if (!question) return;
 
+        // Stable, predictable id (not random) so aria-controls stays valid
+        const panelId = 'faq-panel-' + (index + 1);
+        question.setAttribute('aria-expanded', 'false');
+        question.setAttribute('aria-controls', panelId);
+        question.setAttribute('type', 'button'); // safety: ensure no form submit
+
+        const answer = item.querySelector('.faq-answer');
+        if (answer) {
+            answer.id = panelId;
+            answer.setAttribute('role', 'region');
+            // Start collapsed
+            answer.style.maxHeight = '0';
+        }
+
+        // Single click handler — do NOT also use inline onclick in HTML
+        question.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleFaq(question);
+        });
+
+        // Keyboard: Enter / Space toggle
         question.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
                 e.preventDefault();
+                // prevent the synthetic click from double-firing
+                e.stopPropagation();
                 toggleFaq(question);
             }
         });
     });
+
+    _faqInitialized = true;
 }
 
 function toggleFaq(button) {
     if (!button) return;
 
-    const faqItem = button.parentElement;
+    const faqItem = button.closest('.faq-item');
     if (!faqItem) return;
 
     const answer = faqItem.querySelector('.faq-answer');
     const icon = faqItem.querySelector('.faq-icon-svg');
     const isActive = faqItem.classList.contains('active');
 
-    // Close all other FAQ items
+    // Close all OTHER items (single-open behavior)
     document.querySelectorAll('.faq-item').forEach(function(item) {
-        if (item !== faqItem) {
-            item.classList.remove('active');
-            const otherAnswer = item.querySelector('.faq-answer');
-            const otherIcon = item.querySelector('.faq-icon-svg');
-            if (otherAnswer) {
-                otherAnswer.style.maxHeight = '0';
-            }
-            if (otherIcon) {
-                otherIcon.style.transform = 'rotate(0deg)';
-            }
+        if (item === faqItem) return;
+        if (!item.classList.contains('active')) return;
+
+        item.classList.remove('active');
+        const otherAnswer = item.querySelector('.faq-answer');
+        const otherIcon = item.querySelector('.faq-icon-svg');
+        const otherBtn = item.querySelector('.faq-question');
+        if (otherAnswer) {
+            otherAnswer.style.maxHeight = '0';
+        }
+        if (otherIcon) {
+            otherIcon.style.transform = 'rotate(0deg)';
+        }
+        if (otherBtn) {
+            otherBtn.setAttribute('aria-expanded', 'false');
         }
     });
 
-    // Toggle current item
+    // Toggle current
     if (!isActive) {
         faqItem.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
+        if (icon) icon.style.transform = 'rotate(45deg)';
+
         if (answer) {
-            answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-        if (icon) {
-            icon.style.transform = 'rotate(45deg)';
+            // Measure scrollHeight reliably.
+            // Temporarily remove any max-height cap so the true height is returned
+            // (works even if a CSS rule, parent visibility, or reveal animation
+            // would otherwise give us 0).
+            const prevMaxHeight = answer.style.maxHeight;
+            const prevOverflow = answer.style.overflow;
+            answer.style.maxHeight = 'none';
+            answer.style.overflow = 'visible';
+            const target = answer.scrollHeight;
+            // restore before animating
+            answer.style.maxHeight = prevMaxHeight;
+            answer.style.overflow = prevOverflow;
+
+            // Add a small safety margin for borders / sub-pixel rounding
+            const finalHeight = target + 4;
+            answer.style.maxHeight = finalHeight + 'px';
+
+            // After the transition completes, switch to 'none' so dynamic
+            // content (font loading, viewport changes) doesn't get clipped.
+            const onEnd = function(ev) {
+                if (ev.propertyName !== 'max-height') return;
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = 'none';
+                }
+                answer.removeEventListener('transitionend', onEnd);
+            };
+            answer.addEventListener('transitionend', onEnd);
         }
     } else {
+        // Closing: if currently 'none', set the explicit height first so the
+        // transition has a value to animate from.
         faqItem.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+
         if (answer) {
+            if (answer.style.maxHeight === 'none' || answer.style.maxHeight === '') {
+                const h = answer.scrollHeight;
+                answer.style.maxHeight = h + 'px';
+                // force reflow
+                // eslint-disable-next-line no-unused-expressions
+                answer.offsetHeight;
+            }
             answer.style.maxHeight = '0';
-        }
-        if (icon) {
-            icon.style.transform = 'rotate(0deg)';
         }
     }
 }
@@ -332,16 +442,16 @@ function initMagneticButtons() {
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
 
-                // Premium magnetic effect with smooth interpolation
+                // Premium magnetic effect with smooth interpolation + subtle lift
                 const targetX = x * 0.25;
-                const targetY = y * 0.25;
+                const targetY = y * 0.25 - 2; // -2px lift matches CSS hover
 
                 btn.style.transform = `translate(${targetX}px, ${targetY}px) scale(1.02)`;
             });
 
             btn.addEventListener('mouseleave', function() {
                 // Smooth return to original position
-                btn.style.transform = 'translate(0, 0) scale(1)';
+                btn.style.transform = '';
             });
         });
     }
@@ -363,7 +473,8 @@ function initSmoothScroll() {
             if (target) {
                 e.preventDefault();
 
-                const headerOffset = 80;
+                const nav = document.querySelector('.nav-container');
+                const headerOffset = nav ? nav.offsetHeight : 72;
                 const elementPosition = target.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
