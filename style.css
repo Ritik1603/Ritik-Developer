@@ -701,6 +701,7 @@ img, svg, video {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    gap: 1.5rem;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
@@ -708,6 +709,23 @@ img, svg, video {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+}
+
+.loader-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: contain;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    padding: 8px;
+    box-shadow: 0 8px 32px -4px rgba(59, 130, 246, 0.4);
+    animation: loaderLogoPulse 1.6s ease-in-out infinite;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+@keyframes loaderLogoPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 8px 32px -4px rgba(59, 130, 246, 0.4); }
+    50%      { transform: scale(1.05); box-shadow: 0 12px 40px -4px rgba(59, 130, 246, 0.65); }
 }
 
 .loader-text {
@@ -838,12 +856,16 @@ img, svg, video {
     width: 40px;
     height: 40px;
     border-radius: 12px;
+    object-fit: contain;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    padding: 4px;
     box-shadow: 0 4px 16px -2px rgba(59, 130, 246, 0.35);
     flex-shrink: 0;
+    display: block;
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo);
+    /* High-DPI: ensure the 1254px source renders crisp at small sizes */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
 .nav-logo-text {
@@ -852,10 +874,17 @@ img, svg, video {
     font-size: var(--fs-lg);
     color: #ffffff;
     white-space: nowrap;
+    line-height: 1;
+    /* Optical alignment with the 40px square icon */
+    padding-top: 2px;
 }
 
 .nav-logo:hover {
     transform: scale(1.02);
+}
+
+.nav-logo:hover .nav-logo-icon {
+    box-shadow: 0 6px 22px -2px rgba(59, 130, 246, 0.55);
 }
 
 .nav-menu {
@@ -2675,31 +2704,47 @@ img, svg, video {
     width: 48px;
     height: 48px;
     border-radius: 12px;
+    object-fit: contain;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s ease;
+    padding: 4px;
+    display: block;
+    box-shadow: 0 4px 20px -4px rgba(59, 130, 246, 0.4);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    image-rendering: -webkit-optimize-contrast;
+    flex-shrink: 0;
 }
 
-.footer-logo::before {
+/* Footer logo glow — use box-shadow on the img itself, not a pseudo-element
+   (img elements don't reliably render absolutely-positioned ::before
+   stacking contexts across browsers). */
+.footer-brand {
+    position: relative;
+}
+
+.footer-brand::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
     border-radius: 14px;
-    filter: blur(8px);
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    filter: blur(10px);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: -1;
+    pointer-events: none;
 }
 
-.footer-brand:hover .footer-logo::before {
+.footer-brand:hover::before {
     opacity: 0.6;
 }
 
 .footer-brand:hover .footer-logo {
     transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 28px -4px rgba(59, 130, 246, 0.55);
 }
 
 .footer-brand-name {
@@ -3926,6 +3971,16 @@ section:has(.tech-logo) {
         padding: 18px;
     }
 
+    /* Logo: smaller on tiny screens */
+    .nav-logo-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .footer-logo {
+        width: 40px;
+        height: 40px;
+    }
+
     /* Footer: tighter card padding on the smallest screens */
     .footer-grid > div {
         padding: 18px;
@@ -3956,6 +4011,12 @@ section:has(.tech-logo) {
     .nav-menu,
     .nav-cta-wrap {
         display: none;
+    }
+
+    /* Logo: mobile size (32-40px range per spec) */
+    .nav-logo-icon {
+        width: 36px;
+        height: 36px;
     }
     .hamburger {
         display: inline-flex;
@@ -4117,5 +4178,147 @@ html, body {
 body {
     position: relative;
 }
-    transform: translateY(0);
+
+/* ========================================
+   BACK TO TOP BUTTON
+   Premium floating glass button.
+   Hidden at top, fades in after 300px scroll.
+   ======================================== */
+.back-to-top {
+    /* Geometry */
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    /* Glass surface, brand colors */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20, 20, 25, 0.55);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 8px 24px -6px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(59, 130, 246, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    z-index: 9999;             /* above all page content */
+
+    /* Hidden by default — fades in once the .is-visible class is added */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px) scale(0.85);
+    pointer-events: none;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.back-to-top-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Soft brand glow ring (visible on hover) */
+.back-to-top::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    opacity: 0;
+    z-index: -1;
+    filter: blur(10px);
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hover: lift + intensify glow */
+.back-to-top:hover {
+    background: rgba(30, 30, 40, 0.7);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow:
+        0 12px 32px -6px rgba(59, 130, 246, 0.35),
+        0 0 0 1px rgba(59, 130, 246, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.back-to-top:hover::before {
+    opacity: 0.6;
+}
+
+.back-to-top:hover .back-to-top-icon {
+    transform: translateY(-2px);
+}
+
+/* Active / click feedback */
+.back-to-top:active {
+    transform: translateY(-1px) scale(0.97);
+    box-shadow:
+        0 6px 18px -4px rgba(59, 130, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Keyboard focus ring (WCAG) */
+.back-to-top:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+    border-color: rgba(59, 130, 246, 0.6);
+}
+
+/* Mobile: larger touch target, clear of browser UI */
+@media (max-width: 767px) {
+    .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 52px;
+        height: 52px;
+        /* Account for iOS safe area (notch/home indicator) */
+        bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .back-to-top-icon {
+        width: 22px;
+        height: 22px;
+        flex: 0 0 22px;
+    }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top,
+    .back-to-top-icon,
+    .back-to-top::before {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* Print: hide completely */
+@media print {
+    .back-to-top {
+        display: none !important;
+    }
 }

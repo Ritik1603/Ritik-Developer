@@ -10,8 +10,17 @@
     <meta property="og:title" content="Ritik Web Solutions - Custom Websites That Grow Businesses">
     <meta property="og:description" content="Premium Laravel Development, E-Commerce Solutions, Education Portals & Custom Web Applications">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="./favicon.png">
     <title>Ritik Web Solutions | Custom Websites That Grow Businesses</title>
-    <link rel="icon" type="image/png" href="./favicon.png">
+
+    <!-- Favicon (fixes /favicon.ico 404 and works in all major browsers) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="./favicon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon.png">
+    <link rel="shortcut icon" href="./favicon.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +30,10 @@
 <body class="bg-deep-black">
     <!-- Loader -->
     <div class="loader-wrapper" id="loader">
+        <img class="loader-logo"
+             src="./favicon.png"
+             alt="Ritik Web Solutions"
+             width="80" height="80">
         <div class="loader-text">Ritik Web Solutions</div>
         <div class="loader-bar">
             <div class="loader-progress"></div>
@@ -34,16 +47,18 @@
     <div class="mouse-follower" id="mouseFollower"></div>
 
     <!-- Skip to content link -->
-    <a href="#hero" class="skip-link">Skip to content</a>
+    <!-- <a href="#hero" class="skip-link">Skip to content</a> -->
 
     <!-- Navigation -->
     <nav class="nav-container fixed w-full top-0 left-0 z-50" aria-label="Primary">
         <div class="container">
             <div class="nav-inner">
                 <a href="#" class="nav-logo" aria-label="Ritik Web Solutions home">
-                    <span class="nav-logo-icon">
-                        <span class="font-display font-bold text-lg text-white" aria-hidden="true">R</span>
-                    </span>
+                    <img class="nav-logo-icon"
+                         src="./favicon.png"
+                         alt=""
+                         role="presentation"
+                         width="40" height="40">
                     <span class="nav-logo-text">Ritik Web Solutions</span>
                 </a>
 
@@ -1130,9 +1145,10 @@
             <div class="footer-grid mb-16">
                 <div>
                     <a href="#" class="footer-brand flex items-center space-x-3 mb-6">
-                        <div class="footer-logo w-12 h-12 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center shadow-lg shadow-accent-blue/20">
-                            <span class="font-display font-bold text-xl text-white">R</span>
-                        </div>
+                        <img class="footer-logo"
+                             src="./favicon.png"
+                             alt="Ritik Web Solutions"
+                             width="48" height="48">
                         <span class="footer-brand-name">Ritik Web Solutions</span>
                     </a>
                     <p class="footer-description">
@@ -1210,6 +1226,17 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button"
+            id="backToTop"
+            class="back-to-top"
+            aria-label="Back to top"
+            title="Back to top">
+        <svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M5 15l7-7 7 7"/>
+        </svg>
+    </button>
 
     <script src="script.js"></script>
 </body>

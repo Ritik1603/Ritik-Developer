@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateActiveNav();
     initScrollNav();
     initServiceCardGlow();
+    initBackToTop();
 });
 
 /* ========================================
@@ -610,3 +611,57 @@ document.addEventListener('mousedown', function() {
 console.log('%c Ritik Web Solutions', 'font-size: 28px; font-weight: bold; color: #3b82f6; text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);');
 console.log('%cPremium Web Development Agency', 'font-size: 16px; color: #8b5cf6;');
 console.log('%cBuilt with passion and precision.', 'font-size: 12px; color: #6b7280;');
+
+/* ========================================
+   BACK TO TOP BUTTON
+   Hidden at top, fades in after 300px scroll,
+   smooth-scrolls to top on click.
+   ======================================== */
+function initBackToTop() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    const SHOW_AFTER = 300;    // px scrolled before showing
+    let ticking = false;
+
+    function updateVisibility() {
+        const y = window.pageYOffset || document.documentElement.scrollTop;
+        if (y > SHOW_AFTER) {
+            btn.classList.add('is-visible');
+        } else {
+            btn.classList.remove('is-visible');
+        }
+        ticking = false;
+    }
+
+    // rAF-throttled scroll listener for performance
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(updateVisibility);
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Initial state
+    updateVisibility();
+
+    // Click: smooth scroll to top
+    btn.addEventListener('click', function() {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            window.scrollTo(0, 0);
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Move focus back to the top of the document for keyboard users
+        const skipLink = document.querySelector('.skip-link');
+        if (skipLink) {
+            skipLink.focus();
+        } else {
+            // Fallback: focus body
+            document.body.setAttribute('tabindex', '-1');
+            document.body.focus();
+            document.body.removeAttribute('tabindex');
+        }
+    });
+}

@@ -7,7 +7,19 @@
       "Bash(sed -n '900,920p' index.html)",
       "Bash(python3 -c ':*)",
       "Bash(python -c ':*)",
-      "Bash(python -c \"import re; f=open\\('style.css'\\); c=f.read\\(\\); f.close\\(\\); print\\(f'Braces: {c.count\\(\\\\\"{\\\\\"\\)} open, {c.count\\(\\\\\"}\\\\\"\\)} close'\\)\")"
+      "Bash(python -c \"import re; f=open\\('style.css'\\); c=f.read\\(\\); f.close\\(\\); print\\(f'Braces: {c.count\\(\\\\\"{\\\\\"\\)} open, {c.count\\(\\\\\"}\\\\\"\\)} close'\\)\")",
+      "Bash(identify /c/xampp/htdocs/Ritik/favicon.png)",
+      "Bash(python -c \"from PIL import Image; im=Image.open\\('/c/xampp/htdocs/Ritik/favicon.png'\\); print\\(im.size, im.mode\\)\")",
+      "Bash(grep -nE \"^\\\\s+[a-z-]+:.*;$\" /c/xampp/htdocs/Ritik/style.css)",
+      "Bash(python3 -m http.server 8765)",
+      "Bash(echo \"Server PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" http://localhost:8765/index.html)",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" http://localhost:8765/script.js)",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" http://localhost:8765/style.css)",
+      "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" http://localhost:8765/favicon.png)",
+      "Bash(curl -s http://localhost:8765/index.html)",
+      "Bash(curl -s http://localhost:8765/script.js)",
+      "Bash(pkill -f \"http.server 8765\")"
     ]
   }
 }
