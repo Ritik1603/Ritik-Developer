@@ -20,7 +20,101 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollNav();
     initServiceCardGlow();
     initBackToTop();
+    initThemeToggle();
 });
+
+/* ========================================
+   THEME TOGGLE
+   Light/Dark mode with persistence, system
+   preference tracking, smooth cross-fade
+   transition, and accessible labels.
+   ======================================== */
+function initThemeToggle() {
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const mobileToggle = document.getElementById('mobileThemeToggle');
+    const mobileText = mobileToggle ? mobileToggle.querySelector('.mobile-theme-text') : null;
+    const meta = document.querySelector('meta[name="theme-color"]');
+
+    // Read current theme (set by the boot script in <head>)
+    function currentTheme() {
+        return html.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+
+    // Apply theme to document + meta + UI labels
+    function applyTheme(theme, animate) {
+        if (animate) {
+            // Cross-fade: a brief overlay softens the swap visually
+            document.body.classList.add('theme-switching');
+            window.setTimeout(function() {
+                document.body.classList.remove('theme-switching');
+            }, 280);
+        }
+
+        html.setAttribute('data-theme', theme);
+
+        if (meta) {
+            meta.setAttribute('content', theme === 'light' ? '#FAFBFC' : '#050505');
+        }
+
+        if (toggle) {
+            const isLight = theme === 'light';
+            toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+            toggle.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+            toggle.setAttribute('title', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+        }
+
+        if (mobileText) {
+            // Show the OPPOSITE of the current theme in the mobile menu item
+            mobileText.textContent = theme === 'light' ? 'Dark Mode' : 'Light Mode';
+        }
+    }
+
+    // Persist + apply
+    function setTheme(theme) {
+        try {
+            localStorage.setItem('theme', theme);
+        } catch (e) {
+            // localStorage blocked — silently ignore
+        }
+        applyTheme(theme, true);
+    }
+
+    // Bind desktop toggle
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            const next = currentTheme() === 'light' ? 'dark' : 'light';
+            setTheme(next);
+        });
+    }
+
+    // Bind mobile toggle
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function() {
+            const next = currentTheme() === 'light' ? 'dark' : 'light';
+            setTheme(next);
+        });
+    }
+
+    // Sync UI to whatever the boot script picked
+    applyTheme(currentTheme(), false);
+
+    // React to system preference changes — only if the user hasn't pinned a
+    // theme with the toggle (so we don't fight their explicit choice).
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
+    const mqHandler = function(e) {
+        try {
+            if (localStorage.getItem('theme')) return;
+        } catch (err) { return; }
+        applyTheme(e.matches ? 'light' : 'dark', true);
+    };
+    if (mq.addEventListener) {
+        mq.addEventListener('change', mqHandler);
+    } else if (mq.addListener) {
+        // Safari < 14
+        mq.addListener(mqHandler);
+    }
+}
 
 /* ========================================
    ANIMATED BACKGROUND MESH

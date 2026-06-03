@@ -4322,3 +4322,1532 @@ body {
         display: none !important;
     }
 }
+
+/* ========================================
+   THEME TOGGLE BUTTON
+   Premium pill switch with rotating sun/moon.
+   ======================================== */
+.theme-toggle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: var(--toggle-bg, rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--toggle-border, rgba(255, 255, 255, 0.08));
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s var(--ease-out-expo),
+                border-color 0.3s var(--ease-out-expo),
+                transform 0.3s var(--ease-out-expo),
+                box-shadow 0.3s var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    color: var(--text-primary);
+    margin-right: 8px;
+}
+
+.theme-toggle:hover {
+    background: var(--toggle-bg-hover, rgba(255, 255, 255, 0.08));
+    border-color: var(--toggle-border-hover, rgba(59, 130, 246, 0.3));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px -6px rgba(59, 130, 246, 0.25);
+}
+
+.theme-toggle:active {
+    transform: scale(0.96);
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+}
+
+.theme-toggle-thumb {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.theme-toggle-thumb svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.45s var(--ease-out-expo),
+                opacity 0.3s ease;
+    will-change: transform, opacity;
+}
+
+/* Sun visible in dark mode, moon visible in light mode */
+[data-theme="dark"] .theme-icon-sun,
+.theme-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: #facc15;
+}
+
+[data-theme="dark"] .theme-icon-moon,
+.theme-icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.5);
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+    color: #f59e0b;
+}
+
+[data-theme="light"] .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: #475569;
+}
+
+/* Mobile theme toggle in the mobile menu */
+.mobile-theme-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    text-align: left;
+    font-family: inherit;
+    width: 100%;
+    cursor: pointer;
+}
+
+.mobile-theme-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.mobile-theme-label svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Show only the moon in mobile menu when in dark mode, sun in light mode */
+[data-theme="dark"] .mobile-theme-label .theme-icon-sun { display: inline; }
+[data-theme="dark"] .mobile-theme-label .theme-icon-moon { display: none; }
+[data-theme="light"] .mobile-theme-label .theme-icon-sun { display: none; }
+[data-theme="light"] .mobile-theme-label .theme-icon-moon { display: inline; }
+
+.mobile-theme-arrow {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mobile-theme-toggle:hover .mobile-theme-arrow {
+    transform: translateX(4px) rotate(180deg);
+    color: var(--accent-blue);
+}
+
+/* ========================================
+   THEME SWITCH CROSS-FADE
+   Subtle overlay during the theme swap so the
+   transition feels intentional, not jarring.
+   ======================================== */
+body.theme-switching::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary, #050505);
+    opacity: 0.15;
+    z-index: 99999;
+    pointer-events: none;
+    animation: themeSwitchFlash 280ms ease forwards;
+}
+
+@keyframes themeSwitchFlash {
+    0%   { opacity: 0; }
+    35%  { opacity: 0.18; }
+    100% { opacity: 0; }
+}
+
+/* ========================================
+   GLOBAL TRANSITION
+   When the theme is changing, give key surfaces
+   a smooth cross-fade so nothing pops.
+   ======================================== */
+body.theme-switching,
+body.theme-switching *,
+body.theme-switching *::before,
+body.theme-switching *::after {
+    transition: background-color 280ms ease,
+                color 280ms ease,
+                border-color 280ms ease,
+                box-shadow 280ms ease !important;
+}
+
+/* ========================================
+   Tailwind-style opacity utility classes
+   (used in HTML for tag pills, decorative overlays)
+   These are missing from the original stylesheet
+   and need to exist for both themes to look right.
+   ======================================== */
+.bg-accent-blue\/5  { background-color: rgba(59, 130, 246, 0.05); }
+.bg-accent-blue\/8  { background-color: rgba(59, 130, 246, 0.08); }
+.bg-accent-blue\/10 { background-color: rgba(59, 130, 246, 0.10); }
+.bg-accent-blue\/20 { background-color: rgba(59, 130, 246, 0.20); }
+
+.bg-accent-purple\/5  { background-color: rgba(139, 92, 246, 0.05); }
+.bg-accent-purple\/10 { background-color: rgba(139, 92, 246, 0.10); }
+.bg-accent-purple\/20 { background-color: rgba(139, 92, 246, 0.20); }
+
+.bg-accent-cyan\/10 { background-color: rgba(6, 182, 212, 0.10); }
+.bg-accent-cyan\/15 { background-color: rgba(6, 182, 212, 0.15); }
+
+.bg-green-500\/20  { background-color: rgba(34, 197, 94, 0.20); }
+.bg-teal-500\/20   { background-color: rgba(20, 184, 166, 0.20); }
+.bg-orange-500\/20 { background-color: rgba(249, 115, 22, 0.20); }
+.bg-yellow-500\/20 { background-color: rgba(234, 179, 8, 0.20); }
+.bg-cyan-500\/20   { background-color: rgba(6, 182, 212, 0.20); }
+.bg-blue-500\/20   { background-color: rgba(59, 130, 246, 0.20); }
+.bg-violet-500\/20 { background-color: rgba(139, 92, 246, 0.20); }
+.bg-purple-500\/20 { background-color: rgba(168, 85, 247, 0.20); }
+.bg-rose-500\/20   { background-color: rgba(244, 63, 94, 0.20); }
+.bg-pink-500\/20   { background-color: rgba(236, 72, 153, 0.20); }
+.bg-amber-500\/20  { background-color: rgba(245, 158, 11, 0.20); }
+.bg-indigo-500\/20 { background-color: rgba(99, 102, 241, 0.20); }
+
+.bg-green-500\/15  { background-color: rgba(34, 197, 94, 0.15); }
+.bg-teal-500\/15   { background-color: rgba(20, 184, 166, 0.15); }
+.bg-pink-500\/15   { background-color: rgba(236, 72, 153, 0.15); }
+.bg-accent-purple\/15 { background-color: rgba(139, 92, 246, 0.15); }
+.bg-accent-blue\/15 { background-color: rgba(59, 130, 246, 0.15); }
+.bg-accent-cyan\/15 { background-color: rgba(6, 182, 212, 0.15); }
+
+.bg-green-500\/50  { background-color: rgba(34, 197, 94, 0.50); }
+.bg-teal-900\/50   { background-color: rgba(19, 78, 74, 0.50); }
+.bg-blue-900\/50   { background-color: rgba(30, 58, 138, 0.50); }
+.bg-purple-900\/50 { background-color: rgba(88, 28, 135, 0.50); }
+.bg-pink-900\/50   { background-color: rgba(131, 24, 67, 0.50); }
+.bg-orange-900\/50 { background-color: rgba(124, 45, 18, 0.50); }
+.bg-indigo-900\/50 { background-color: rgba(49, 46, 129, 0.50); }
+.bg-violet-900\/50 { background-color: rgba(76, 29, 149, 0.50); }
+
+/* text-white with opacity (used on SVG icons) */
+.text-white\/20  { color: rgba(255, 255, 255, 0.20); }
+.text-white\/10  { color: rgba(255, 255, 255, 0.10); }
+.text-white\/30  { color: rgba(255, 255, 255, 0.30); }
+
+/* via-accent-blue\/5 - in case used as gradient stop */
+.via-accent-blue\/5 { --tw-gradient-stops: var(--tw-gradient-from), rgba(59, 130, 246, 0.05), var(--tw-gradient-to); }
+
+/* ========================================
+   LIGHT THEME — softer versions of the
+   above opacity utilities (so pills and
+   decorative glows look right on white).
+   ======================================== */
+[data-theme="light"] .bg-accent-blue\/5  { background-color: rgba(37, 99, 235, 0.06); }
+[data-theme="light"] .bg-accent-blue\/8  { background-color: rgba(37, 99, 235, 0.08); }
+[data-theme="light"] .bg-accent-blue\/10 { background-color: rgba(37, 99, 235, 0.10); }
+[data-theme="light"] .bg-accent-blue\/15 { background-color: rgba(37, 99, 235, 0.12); }
+[data-theme="light"] .bg-accent-blue\/20 { background-color: rgba(37, 99, 235, 0.14); }
+
+[data-theme="light"] .bg-accent-purple\/5  { background-color: rgba(124, 58, 237, 0.06); }
+[data-theme="light"] .bg-accent-purple\/10 { background-color: rgba(124, 58, 237, 0.10); }
+[data-theme="light"] .bg-accent-purple\/15 { background-color: rgba(124, 58, 237, 0.12); }
+[data-theme="light"] .bg-accent-purple\/20 { background-color: rgba(124, 58, 237, 0.14); }
+
+[data-theme="light"] .bg-accent-cyan\/10 { background-color: rgba(8, 145, 178, 0.10); }
+[data-theme="light"] .bg-accent-cyan\/15 { background-color: rgba(8, 145, 178, 0.12); }
+
+[data-theme="light"] .bg-green-500\/15  { background-color: rgba(22, 163, 74, 0.10); }
+[data-theme="light"] .bg-teal-500\/15   { background-color: rgba(13, 148, 136, 0.10); }
+[data-theme="light"] .bg-pink-500\/15   { background-color: rgba(219, 39, 119, 0.10); }
+[data-theme="light"] .bg-green-500\/20  { background-color: rgba(22, 163, 74, 0.10); }
+[data-theme="light"] .bg-teal-500\/20   { background-color: rgba(13, 148, 136, 0.10); }
+[data-theme="light"] .bg-orange-500\/20 { background-color: rgba(234, 88, 12, 0.10); }
+[data-theme="light"] .bg-yellow-500\/20 { background-color: rgba(202, 138, 4, 0.10); }
+[data-theme="light"] .bg-cyan-500\/20   { background-color: rgba(8, 145, 178, 0.10); }
+[data-theme="light"] .bg-blue-500\/20   { background-color: rgba(37, 99, 235, 0.10); }
+[data-theme="light"] .bg-violet-500\/20 { background-color: rgba(124, 58, 237, 0.10); }
+[data-theme="light"] .bg-purple-500\/20 { background-color: rgba(124, 58, 237, 0.10); }
+[data-theme="light"] .bg-rose-500\/20   { background-color: rgba(225, 29, 72, 0.10); }
+[data-theme="light"] .bg-pink-500\/20   { background-color: rgba(219, 39, 119, 0.10); }
+[data-theme="light"] .bg-amber-500\/20  { background-color: rgba(217, 119, 6, 0.10); }
+[data-theme="light"] .bg-indigo-500\/20 { background-color: rgba(79, 70, 229, 0.10); }
+
+[data-theme="light"] .bg-green-500\/50  { background-color: rgba(22, 163, 74, 0.30); }
+[data-theme="light"] .bg-teal-900\/50   { background-color: rgba(13, 148, 136, 0.30); }
+[data-theme="light"] .bg-blue-900\/50   { background-color: rgba(37, 99, 235, 0.30); }
+[data-theme="light"] .bg-purple-900\/50 { background-color: rgba(124, 58, 237, 0.30); }
+[data-theme="light"] .bg-pink-900\/50   { background-color: rgba(219, 39, 119, 0.30); }
+[data-theme="light"] .bg-orange-900\/50 { background-color: rgba(234, 88, 12, 0.30); }
+[data-theme="light"] .bg-indigo-900\/50 { background-color: rgba(79, 70, 229, 0.30); }
+[data-theme="light"] .bg-violet-900\/50 { background-color: rgba(124, 58, 237, 0.30); }
+
+[data-theme="light"] .text-white\/20  { color: rgba(15, 23, 42, 0.30); }
+[data-theme="light"] .text-white\/10  { color: rgba(15, 23, 42, 0.20); }
+[data-theme="light"] .text-white\/30  { color: rgba(15, 23, 42, 0.40); }
+
+/* ========================================
+   THEME TRANSITION (default state)
+   Apply a smooth color/border transition to the
+   most common surfaces so a theme switch feels
+   like a deliberate design choice.
+   ======================================== */
+html {
+    transition: background-color 280ms ease, color 280ms ease;
+}
+
+body,
+.nav-container,
+.glass-card,
+.glass-card-premium,
+.service-card,
+.work-card,
+.testimonial-card,
+.process-card,
+.stat-card,
+.tech-logo,
+.feature-card,
+.faq-item,
+.faq-question,
+.faq-answer,
+.faq-answer p,
+.faq-icon,
+.faq-eyebrow,
+.footer,
+.footer-col,
+.footer-col a,
+.footer-col li,
+.footer-col p,
+.mobile-link,
+.mobile-menu,
+.back-to-top,
+.theme-toggle,
+.trust-indicator,
+.hero-badge,
+.cta-section,
+.cta-button,
+.cta-badge,
+.section-badge,
+.process-time-badge,
+.cta-note,
+.faq-question-text,
+.testimonial-author,
+.testimonial-name,
+.testimonial-role,
+.testimonial-quote,
+.testimonial-stars svg,
+.testimonial-avatar,
+.service-title,
+.service-description,
+.service-icon,
+.stat-label,
+.tech-logo-label,
+.section-subtitle,
+.section-title,
+.cta-title,
+.cta-subtitle,
+.cta-note,
+.work-card-description,
+.work-card-category,
+.work-card-result,
+.work-card-title,
+.metric-box,
+.metric-label,
+.metric-value,
+.metrics-card,
+.metrics-code,
+.metrics-code .comment,
+.hero-subtitle,
+.hero-title,
+.nav-link,
+.nav-cta-btn,
+.nav-logo-text,
+.magnetic-btn,
+.secondary-btn,
+.btn-label,
+.btn-arrow,
+.scroll-indicator,
+.scroll-indicator-text,
+.scroll-indicator-arrow,
+.faq-eyebrow,
+.feature-title,
+.feature-description,
+.loader-wrapper,
+.loader-bar,
+.loader-progress,
+.secondary-btn svg,
+.process-description,
+.process-title,
+.process-time-badge,
+.cta-floating-element,
+.cta-content,
+.geometric-ring,
+.geometric-dots,
+.process-step-number,
+.stat-number,
+.process-card,
+.faq-glow,
+.hero-glow,
+.work-card-tag,
+.section-divider-line,
+.section-divider-dot,
+.metric-box,
+.timeline-line,
+.timeline-dot,
+.timeline-content::before,
+.loader-logo,
+.back-to-top-icon,
+.cta-button,
+.footer-bottom,
+.footer-copyright,
+.footer-links a,
+.faq-grid-pattern,
+.footer::before,
+.hero-trust-row,
+.nav-logo-icon,
+.feature-icon,
+.magnetic-btn::before,
+.magnetic-btn::after {
+    transition: background-color 280ms ease,
+                color 280ms ease,
+                border-color 280ms ease,
+                box-shadow 280ms ease,
+                background 280ms ease;
+}
+
+/* ========================================
+   ========================================
+   LIGHT THEME
+   ========================================
+   ======================================== */
+[data-theme="light"] {
+    /* Surfaces — layered, never pure white */
+    --bg-primary: #FAFBFC;
+    --bg-secondary: #F6F8FB;
+    --surface: #FFFFFF;
+    --surface-light: #FFFFFF;
+    --surface-lighter: #F6F8FB;
+    --surface-elevated: #FFFFFF;
+    --deep-black: #FAFBFC;
+
+    /* Text */
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+    --text-faint: #94A3B8;
+
+    /* Borders */
+    --border-primary: #E5EAF2;
+    --border-secondary: #EEF1F6;
+    --border-strong: #D1DAE6;
+
+    /* Accent (slightly deeper for AA contrast on white) */
+    --accent-blue: #2563EB;
+    --accent-purple: #7C3AED;
+    --accent-cyan: #0891B2;
+    --accent-pink: #DB2777;
+    --glow-blue: rgba(37, 99, 235, 0.12);
+    --glow-purple: rgba(124, 58, 237, 0.12);
+    --glow-cyan: rgba(8, 145, 178, 0.12);
+
+    /* Premium shadow tokens (cool, soft) */
+    --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 12px 32px -8px rgba(15, 23, 42, 0.10), 0 4px 12px -4px rgba(15, 23, 42, 0.06);
+    --shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.14), 0 8px 16px -6px rgba(15, 23, 42, 0.08);
+    --shadow-blue: 0 12px 32px -8px rgba(37, 99, 235, 0.18), 0 4px 12px -4px rgba(37, 99, 235, 0.10);
+    --shadow-purple: 0 12px 32px -8px rgba(124, 58, 237, 0.18), 0 4px 12px -4px rgba(124, 58, 237, 0.10);
+
+    /* Toggle component */
+    --toggle-bg: #F1F5F9;
+    --toggle-bg-hover: #E2E8F0;
+    --toggle-border: #E2E8F0;
+    --toggle-border-hover: rgba(37, 99, 235, 0.35);
+}
+
+/* ========================================
+   LIGHT THEME — BASE
+   ======================================== */
+[data-theme="light"] body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    /* Subtle warm-cool vertical wash to keep the page from looking flat */
+    background-image:
+        radial-gradient(1200px 600px at 100% 0%, rgba(37, 99, 235, 0.05), transparent 60%),
+        radial-gradient(900px 500px at 0% 100%, rgba(124, 58, 237, 0.04), transparent 60%);
+    background-attachment: fixed;
+}
+
+[data-theme="light"] ::selection {
+    background: rgba(37, 99, 235, 0.18);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #94A3B8, #64748B);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #64748B, #475569);
+}
+
+/* ========================================
+   LIGHT THEME — TYPOGRAPHY
+   ======================================== */
+[data-theme="light"] .text-white { color: var(--text-primary); }
+[data-theme="light"] .text-black { color: var(--text-primary); }
+[data-theme="light"] .text-gray-300 { color: #334155; }
+[data-theme="light"] .text-gray-400 { color: var(--text-secondary); }
+[data-theme="light"] .text-gray-500 { color: var(--text-muted); }
+[data-theme="light"] .text-gray-600 { color: var(--text-secondary); }
+
+/* ========================================
+   LIGHT THEME — NAVBAR
+   White glass with soft shadow + crisp border
+   ======================================== */
+[data-theme="light"] .nav-container {
+    background: rgba(255, 255, 255, 0.78);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+}
+
+[data-theme="light"] .nav-container.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom-color: var(--border-strong);
+    box-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.10),
+                0 1px 0 rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .nav-container.scrolled::before {
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.25), rgba(124, 58, 237, 0.25), transparent);
+}
+
+[data-theme="light"] .nav-logo-text {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .nav-link {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .nav-link.active {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .nav-cta-btn {
+    box-shadow: 0 2px 8px -2px rgba(37, 99, 235, 0.30),
+                0 0 0 1px rgba(37, 99, 235, 0.10);
+}
+
+[data-theme="light"] .nav-cta-btn:hover {
+    box-shadow: 0 8px 24px -4px rgba(37, 99, 235, 0.40),
+                0 0 0 1px rgba(37, 99, 235, 0.20);
+}
+
+[data-theme="light"] .hamburger {
+    background: rgba(15, 23, 42, 0.04);
+    border-color: var(--border-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .hamburger:hover {
+    background: rgba(15, 23, 42, 0.06);
+    border-color: rgba(37, 99, 235, 0.30);
+}
+
+[data-theme="light"] .hamburger-bars span {
+    background: var(--text-primary);
+}
+
+/* ========================================
+   LIGHT THEME — HERO
+   Bright, clean, with soft tinted glows (not heavy)
+   ======================================== */
+[data-theme="light"] .hero-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .hero-badge {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .hero-glow {
+    opacity: 0.55;
+}
+
+[data-theme="light"] .hero-glow-1 {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.10) 0%, transparent 60%);
+}
+
+[data-theme="light"] .hero-glow-2 {
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+}
+
+[data-theme="light"] .geometric-ring {
+    border-color: rgba(37, 99, 235, 0.18);
+}
+
+[data-theme="light"] .geometric-dots {
+    background-image: radial-gradient(circle, rgba(15, 23, 42, 0.10) 1px, transparent 1px);
+}
+
+[data-theme="light"] .animated-bg::before {
+    background:
+        radial-gradient(circle at 30% 30%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+}
+
+[data-theme="light"] .trust-indicator {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .trust-indicator:hover {
+    background: #FFFFFF;
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .trust-indicator svg {
+    color: var(--accent-blue);
+}
+
+/* Secondary button (View Portfolio) */
+[data-theme="light"] .secondary-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--border-primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .secondary-btn:hover,
+[data-theme="light"] .secondary-btn:focus-visible {
+    background: #FFFFFF;
+    border-color: rgba(37, 99, 235, 0.40);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .secondary-btn svg {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .secondary-btn:hover svg,
+[data-theme="light"] .secondary-btn:focus-visible svg {
+    color: var(--accent-blue);
+}
+
+/* Scroll indicator */
+[data-theme="light"] .scroll-indicator-text {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .scroll-indicator-arrow {
+    border-color: var(--border-strong);
+}
+
+/* ========================================
+   LIGHT THEME — CARDS
+   Soft elevation, clean border, premium shadow
+   ======================================== */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .glass-card-premium {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-md),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="light"] .glass-card:hover,
+[data-theme="light"] .glass-card-premium:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-blue);
+}
+
+[data-theme="light"] .service-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .service-card:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .service-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .service-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .stat-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .stat-card:hover {
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .stat-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .work-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .work-card:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .work-card-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .work-card-category {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .testimonial-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .testimonial-card:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-lg);
+}
+
+[data-theme="light"] .testimonial-quote {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .testimonial-name {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .testimonial-role {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .testimonial-author {
+    border-top-color: var(--border-primary);
+}
+
+[data-theme="light"] .testimonial-card::before {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(124, 58, 237, 0.06));
+    opacity: 0.4;
+}
+
+[data-theme="light"] .process-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .process-card:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .process-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .process-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .process-time-badge {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .tech-logo {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .tech-logo:hover {
+    background: #F8FAFF;
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .tech-logo-label {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .tech-logo::before {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.10) 0%, transparent 70%);
+}
+
+[data-theme="light"] .feature-card {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="light"] .feature-card:hover {
+    background: #FFFFFF;
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .feature-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .feature-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .features-grid > div {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .features-grid > div:hover {
+    background: #FFFFFF;
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .features-grid h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .features-grid p {
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   LIGHT THEME — METRICS / CODE BLOCK
+   ======================================== */
+[data-theme="light"] .metrics-card {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .metric-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-secondary);
+}
+
+[data-theme="light"] .metric-label {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .metrics-code .comment { color: var(--text-muted); }
+[data-theme="light"] .metrics-code .keyword { color: #16A34A; }
+[data-theme="light"] .metrics-code .string  { color: var(--accent-blue); }
+[data-theme="light"] .metrics-code .property { color: var(--accent-purple); }
+[data-theme="light"] .metrics-code .value { color: #0891B2; }
+
+[data-theme="light"] .floating-badge-inner {
+    background: #FFFFFF;
+    border: 1px solid var(--border-primary);
+}
+
+[data-theme="light"] .floating-badge svg {
+    color: var(--accent-blue);
+}
+
+/* ========================================
+   LIGHT THEME — BUTTONS
+   ======================================== */
+[data-theme="light"] .magnetic-btn {
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px -4px rgba(37, 99, 235, 0.40),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="light"] .magnetic-btn:hover,
+[data-theme="light"] .magnetic-btn:focus-visible {
+    box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+/* ========================================
+   LIGHT THEME — FAQ
+   ======================================== */
+[data-theme="light"] .faq-eyebrow {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .faq-eyebrow-icon {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .faq-item {
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .faq-item:hover {
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .faq-item.active {
+    border-color: rgba(37, 99, 235, 0.40);
+    background: #FFFFFF;
+    box-shadow: var(--shadow-blue);
+}
+
+[data-theme="light"] .faq-question-text {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .faq-item:hover .faq-question-text,
+[data-theme="light"] .faq-item.active .faq-question-text {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .faq-icon {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="light"] .faq-icon svg {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .faq-item:hover .faq-icon {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.30);
+}
+
+[data-theme="light"] .faq-answer p {
+    color: var(--text-secondary);
+    border-top-color: var(--border-primary);
+}
+
+[data-theme="light"] .faq-section::before {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%);
+}
+
+[data-theme="light"] .faq-grid-pattern {
+    background-image:
+        linear-gradient(rgba(15, 23, 42, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.05) 1px, transparent 1px);
+}
+
+/* ========================================
+   LIGHT THEME — CTA SECTION
+   ======================================== */
+[data-theme="light"] .cta-section {
+    background:
+        radial-gradient(ellipse at center top, rgba(37, 99, 235, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at center bottom, rgba(124, 58, 237, 0.06) 0%, transparent 50%);
+}
+
+[data-theme="light"] .cta-section::before {
+    background:
+        radial-gradient(ellipse at center top, rgba(37, 99, 235, 0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at center bottom, rgba(124, 58, 237, 0.07) 0%, transparent 50%);
+}
+
+[data-theme="light"] .cta-section::after {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+}
+
+[data-theme="light"] .cta-floating-element {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.10), rgba(124, 58, 237, 0.06));
+}
+
+[data-theme="light"] .cta-badge {
+    background: rgba(34, 197, 94, 0.10);
+    border-color: rgba(34, 197, 94, 0.25);
+    color: #16A34A;
+}
+
+[data-theme="light"] .cta-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .cta-subtitle {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .cta-button {
+    box-shadow: 0 8px 24px -8px rgba(37, 99, 235, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="light"] .cta-button:hover {
+    box-shadow: 0 16px 36px -10px rgba(37, 99, 235, 0.50),
+                inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+[data-theme="light"] .cta-note {
+    color: var(--text-muted);
+}
+
+/* ========================================
+   LIGHT THEME — FOOTER
+   ======================================== */
+[data-theme="light"] .footer {
+    background: linear-gradient(to top, rgba(241, 245, 249, 0.85) 0%, rgba(250, 251, 252, 0) 100%);
+    border-top-color: var(--border-primary);
+}
+
+[data-theme="light"] .footer::before {
+    background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.10), transparent);
+}
+
+[data-theme="light"] .footer-col h4 {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .footer-col h4::after {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+}
+
+[data-theme="light"] .footer-col a,
+[data-theme="light"] .footer-col li,
+[data-theme="light"] .footer-col p {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .footer-col a:hover,
+[data-theme="light"] .footer-col li:hover {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .footer-brand-name {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .footer-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .footer-social a {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: var(--border-primary);
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .footer-social a:hover {
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .footer-social svg {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .footer-social a:hover svg {
+    color: #FFFFFF;
+}
+
+[data-theme="light"] .footer-bottom {
+    border-top-color: var(--border-primary);
+}
+
+[data-theme="light"] .footer-copyright {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .footer-links a:hover {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .footer-logo {
+    box-shadow: 0 4px 16px -4px rgba(37, 99, 235, 0.30);
+}
+
+/* Mobile footer cards (≤767px) */
+@media (max-width: 767px) {
+    [data-theme="light"] .footer-grid > div {
+        background: #FFFFFF;
+        border-color: var(--border-primary);
+        box-shadow: var(--shadow-sm);
+    }
+    [data-theme="light"] .footer-col h4 {
+        color: var(--text-primary);
+    }
+}
+
+/* ========================================
+   LIGHT THEME — MOBILE MENU
+   ======================================== */
+[data-theme="light"] .mobile-menu {
+    background: rgba(250, 251, 252, 0.97);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+}
+
+[data-theme="light"] .mobile-link {
+    color: var(--text-primary);
+    background: #FFFFFF;
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .mobile-link::after {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .mobile-link:hover,
+[data-theme="light"] .mobile-link:active,
+[data-theme="light"] .mobile-link:focus {
+    color: var(--accent-blue);
+    background: #F8FAFF;
+    border-color: rgba(37, 99, 235, 0.30);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .mobile-link:hover::after,
+[data-theme="light"] .mobile-link:active::after {
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .mobile-link.is-cta {
+    box-shadow: 0 8px 20px -8px rgba(37, 99, 235, 0.45);
+}
+
+[data-theme="light"] .mobile-theme-arrow {
+    color: var(--text-muted);
+}
+
+[data-theme="light"] .mobile-theme-toggle:hover .mobile-theme-arrow {
+    color: var(--accent-blue);
+}
+
+/* ========================================
+   LIGHT THEME — BACK TO TOP
+   ======================================== */
+[data-theme="light"] .back-to-top {
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+    border-color: var(--border-primary);
+    box-shadow: var(--shadow-lg),
+                0 0 0 1px rgba(37, 99, 235, 0.10),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .back-to-top-icon {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .back-to-top:hover {
+    background: #FFFFFF;
+    border-color: rgba(37, 99, 235, 0.40);
+    box-shadow: var(--shadow-blue),
+                0 0 0 1px rgba(37, 99, 235, 0.20),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    color: var(--accent-blue);
+}
+
+[data-theme="light"] .back-to-top:hover .back-to-top-icon {
+    color: var(--accent-blue);
+}
+
+/* ========================================
+   LIGHT THEME — LOADER
+   ======================================== */
+[data-theme="light"] .loader-wrapper {
+    background: #FFFFFF;
+}
+
+[data-theme="light"] .loader-bar {
+    background: var(--border-primary);
+}
+
+/* ========================================
+   LIGHT THEME — MARQUEE
+   ======================================== */
+[data-theme="light"] .marquee-section {
+    border-top-color: var(--border-primary);
+    border-bottom-color: var(--border-primary);
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .marquee-section::before {
+    background: linear-gradient(to right, var(--bg-secondary), transparent);
+}
+
+[data-theme="light"] .marquee-section::after {
+    background: linear-gradient(to left, var(--bg-secondary), transparent);
+}
+
+/* ========================================
+   LIGHT THEME — TIMELINE
+   ======================================== */
+[data-theme="light"] .timeline-line {
+    background: linear-gradient(180deg, transparent, rgba(37, 99, 235, 0.20), rgba(124, 58, 237, 0.20), transparent);
+}
+
+[data-theme="light"] .timeline-dot {
+    border-color: #FFFFFF;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 1),
+                0 0 20px rgba(37, 99, 235, 0.35),
+                0 0 40px rgba(124, 58, 237, 0.20);
+}
+
+/* ========================================
+   LIGHT THEME — DECORATIVE OVERLAYS
+   Soften the heavy orbs/glows from the dark mode
+   ======================================== */
+[data-theme="light"] .gradient-orb-1 {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.18) 0%, transparent 70%);
+    opacity: 0.45;
+}
+
+[data-theme="light"] .gradient-orb-2 {
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, transparent 70%);
+    opacity: 0.40;
+}
+
+[data-theme="light"] .gradient-orb-3 {
+    background: radial-gradient(circle, rgba(8, 145, 178, 0.10) 0%, transparent 70%);
+    opacity: 0.35;
+}
+
+[data-theme="light"] .mouse-follower {
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.025) 40%, transparent 70%);
+}
+
+[data-theme="light"] .noise-overlay {
+    opacity: 0.025;
+}
+
+/* ========================================
+   LIGHT THEME — SECTION BADGES / EYEBROWS
+   ======================================== */
+[data-theme="light"] .section-badge {
+    color: var(--accent-blue);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.06));
+    border: 1px solid rgba(37, 99, 235, 0.20);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .section-badge::before {
+    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.20), transparent);
+}
+
+[data-theme="light"] .section-subtitle,
+[data-theme="light"] .hero-subtitle {
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .section-title {
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .section-divider-line {
+    background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.20));
+}
+
+/* ========================================
+   LIGHT THEME — WORK-CARD TAGS
+   The pill tags inside the portfolio cards
+   ======================================== */
+[data-theme="light"] .work-card-tag,
+[data-theme="light"] span[class*="bg-accent-blue/10"] {
+    /* Subtle brand-tinted pills, not loud */
+}
+
+[data-theme="light"] .bg-accent-blue\/10 {
+    background-color: rgba(37, 99, 235, 0.10) !important;
+    color: var(--accent-blue) !important;
+}
+[data-theme="light"] .bg-accent-purple\/10 {
+    background-color: rgba(124, 58, 237, 0.10) !important;
+    color: var(--accent-purple) !important;
+}
+[data-theme="light"] .bg-accent-cyan\/10 {
+    background-color: rgba(8, 145, 178, 0.10) !important;
+    color: #0891B2 !important;
+}
+[data-theme="light"] .bg-green-500\/10 {
+    background-color: rgba(22, 163, 74, 0.10) !important;
+    color: #16A34A !important;
+}
+[data-theme="light"] .bg-orange-500\/10 {
+    background-color: rgba(234, 88, 12, 0.10) !important;
+    color: #EA580C !important;
+}
+[data-theme="light"] .bg-cyan-500\/10 {
+    background-color: rgba(8, 145, 178, 0.10) !important;
+    color: #0891B2 !important;
+}
+[data-theme="light"] .bg-violet-500\/10 {
+    background-color: rgba(124, 58, 237, 0.10) !important;
+    color: var(--accent-purple) !important;
+}
+[data-theme="light"] .bg-rose-500\/10 {
+    background-color: rgba(225, 29, 72, 0.10) !important;
+    color: #E11D48 !important;
+}
+[data-theme="light"] .bg-amber-500\/10 {
+    background-color: rgba(217, 119, 6, 0.10) !important;
+    color: #D97706 !important;
+}
+[data-theme="light"] .bg-indigo-500\/10 {
+    background-color: rgba(79, 70, 229, 0.10) !important;
+    color: #4F46E5 !important;
+}
+
+[data-theme="light"] .text-green-400 { color: #16A34A; }
+[data-theme="light"] .text-orange-400 { color: #EA580C; }
+[data-theme="light"] .text-cyan-400 { color: #0891B2; }
+[data-theme="light"] .text-violet-400 { color: var(--accent-purple); }
+[data-theme="light"] .text-rose-400 { color: #E11D48; }
+[data-theme="light"] .text-amber-400 { color: #D97706; }
+[data-theme="light"] .text-indigo-400 { color: #4F46E5; }
+[data-theme="light"] .text-pink-400 { color: #DB2777; }
+[data-theme="light"] .text-yellow-400 { color: #D97706; }
+[data-theme="light"] .text-blue-400 { color: var(--accent-blue); }
+[data-theme="light"] .text-red-400 { color: #DC2626; }
+[data-theme="light"] .text-purple-400 { color: var(--accent-purple); }
+[data-theme="light"] .text-teal-400 { color: #0D9488; }
+
+/* Work card gradient bg images — softer in light */
+[data-theme="light"] .work-card .bg-gradient-to-br {
+    filter: saturate(0.85) brightness(1.05);
+}
+
+/* Work card "from-deep-black" overlay — softer in light */
+[data-theme="light"] .bg-gradient-to-t.from-deep-black {
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.6), transparent);
+}
+
+/* "View All Projects" button in work section */
+[data-theme="light"] .border-white\/10 {
+    border-color: var(--border-primary) !important;
+}
+[data-theme="light"] .bg-white\/5 {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+}
+[data-theme="light"] .border-white\/5 {
+    border-color: var(--border-primary) !important;
+}
+[data-theme="light"] .hover\:bg-white\/10:hover {
+    background-color: #FFFFFF !important;
+    border-color: rgba(37, 99, 235, 0.30) !important;
+}
+
+/* ========================================
+   LIGHT THEME — STATS BACKDROP
+   ======================================== */
+[data-theme="light"] #stats {
+    background:
+        radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.04), transparent 60%);
+}
+
+/* ========================================
+   LIGHT THEME — KEYFRAMES
+   The green pulse dot needs to read in light
+   ======================================== */
+[data-theme="light"] .shadow-green-400\/50 {
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.20);
+}
+
+/* ========================================
+   LIGHT THEME — FOCUS STATE
+   Slightly stronger outline in light to read on white
+   ======================================== */
+[data-theme="light"] :focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+}
+
+/* ========================================
+   LIGHT THEME — CONTACT INFO
+   The contact section icons inherit accent-blue
+   ======================================== */
+[data-theme="light"] .footer .text-accent-blue {
+    color: var(--accent-blue);
+}
+
+/* ========================================
+   LIGHT THEME — AVATARS (testimonial)
+   The white text inside the gradient avatar
+   reads on dark gradient only — keep white
+   ======================================== */
+[data-theme="light"] .testimonial-avatar {
+    color: #FFFFFF;
+}
+
+/* ========================================
+   LIGHT THEME — HERO BADGE PULSE DOT
+   ======================================== */
+[data-theme="light"] .bg-green-400 {
+    background-color: #22C55E;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.20);
+}
+
+/* ========================================
+   LIGHT THEME — TEXT GRADIENTS
+   Premium gradient → keep working but slightly
+   deeper so it reads on white
+   ======================================== */
+[data-theme="light"] .text-gradient {
+    background: linear-gradient(135deg, #2563EB 0%, #7C3AED 50%, #0891B2 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .text-gradient-premium {
+    background: linear-gradient(135deg, #0F172A 0%, #2563EB 25%, #7C3AED 50%, #0891B2 75%, #0F172A 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .stat-number {
+    background: linear-gradient(135deg, #2563EB, #7C3AED, #0891B2);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+[data-theme="light"] .metric-value {
+    background: linear-gradient(135deg, #2563EB, #7C3AED, #0891B2);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========================================
+   LIGHT THEME — THEME TOGGLE
+   ======================================== */
+[data-theme="light"] .theme-toggle {
+    background: #F1F5F9;
+    border-color: #E2E8F0;
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    background: #E2E8F0;
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   LIGHT THEME — RESPONSIVE FIXES
+   ======================================== */
+@media (max-width: 767px) {
+    [data-theme="light"] .mobile-menu {
+        background: rgba(250, 251, 252, 0.98);
+    }
+}
+
+/* Make hero card overlays lighter on light theme for less heavy feel */
+[data-theme="light"] .glass-card {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+[data-theme="light"] .glass-card-premium {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+[data-theme="light"] .testimonial-card {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+[data-theme="light"] .service-card {
+    background: #FFFFFF;
+}
+
+[data-theme="light"] .stat-card {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+[data-theme="light"] .process-card {
+    background: #FFFFFF;
+}
+
+[data-theme="light"] .faq-item {
+    background: #FFFFFF;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+/* ========================================
+   PRINT (light theme compatible)
+   ======================================== */
+@media print {
+    [data-theme="light"] body {
+        background: white;
+        color: black;
+    }
+}
+
+/* ========================================
+   HIGH CONTRAST / FORCED COLORS
+   ======================================== */
+@media (forced-colors: active) {
+    [data-theme="light"] .faq-item,
+    [data-theme="light"] .service-card,
+    [data-theme="light"] .work-card,
+    [data-theme="light"] .testimonial-card,
+    [data-theme="light"] .stat-card,
+    [data-theme="light"] .process-card {
+        border: 2px solid CanvasText;
+    }
+}

@@ -26,6 +26,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- ========================================
+         THEME BOOT SCRIPT — Prevents Flash of Incorrect Theme
+         Priority: 1) Saved localStorage preference
+                   2) System prefers-color-scheme
+                   3) Default: dark
+         ======================================== -->
+    <script>
+        (function() {
+            try {
+                var saved = localStorage.getItem('theme');
+                var systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+                var theme = saved || (systemPrefersLight ? 'light' : 'dark');
+                document.documentElement.setAttribute('data-theme', theme);
+                // Update meta theme-color to match
+                var meta = document.querySelector('meta[name="theme-color"]');
+                if (meta) {
+                    meta.setAttribute('content', theme === 'light' ? '#FAFBFC' : '#050505');
+                }
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
 </head>
 <body class="bg-deep-black">
     <!-- Loader -->
@@ -71,6 +95,21 @@
                 </div>
 
                 <div class="nav-cta-wrap">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch theme" aria-pressed="false">
+                        <span class="theme-toggle-track">
+                            <span class="theme-toggle-thumb">
+                                <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                                </svg>
+                                <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                                </svg>
+                            </span>
+                        </span>
+                    </button>
+
                     <a href="#contact" class="nav-cta-btn">
                         <span>Start Project</span>
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -98,6 +137,19 @@
             <a href="#process" class="mobile-link">Process</a>
             <a href="#testimonials" class="mobile-link">Testimonials</a>
             <a href="#faq" class="mobile-link">FAQ</a>
+            <button type="button" class="mobile-link mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
+                <span class="mobile-theme-label">
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+                    </svg>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <span class="mobile-theme-text">Light Mode</span>
+                </span>
+                <span class="mobile-theme-arrow" aria-hidden="true">⇌</span>
+            </button>
             <a href="#contact" class="mobile-link is-cta">Start Project</a>
         </div>
     </div>

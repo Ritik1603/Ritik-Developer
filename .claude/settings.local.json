@@ -19,7 +19,8 @@
       "Bash(curl -s -o /dev/null -w \"Status: %{http_code}\\\\n\" http://localhost:8765/favicon.png)",
       "Bash(curl -s http://localhost:8765/index.html)",
       "Bash(curl -s http://localhost:8765/script.js)",
-      "Bash(pkill -f \"http.server 8765\")"
+      "Bash(pkill -f \"http.server 8765\")",
+      "Bash(grep:*)"
     ]
   }
 }
